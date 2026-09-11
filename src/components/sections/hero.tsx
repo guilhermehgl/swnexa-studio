@@ -1,18 +1,42 @@
 "use client";
-import { useRef } from "react";
-import { ArrowDown, ArrowUpRight } from "lucide-react";
+import { useRef, type PointerEvent } from "react";
+import { ArrowDown } from "lucide-react";
 import {
   motion,
   useReducedMotion,
   useScroll,
   useTransform,
 } from "framer-motion";
-import Image from "next/image";
+import { getImageProps } from "next/image";
 import background from "@/assets/background.png";
+import backgroundMobile from "@/assets/background-mobile.png";
 import styles from "./hero.module.css";
+
+const desktopLines = [
+  ["Sites que", "impressionam."],
+  ["Sistemas que", "resolvem."],
+];
+const mobileLines = ["Sites que", "impressionam.", "Sistemas que", "resolvem."];
+const emphasisWords = new Set(["impressionam.", "resolvem."]);
+
+const imageProps = { alt: "", sizes: "100vw", fill: true, loading: "eager" as const };
+const {
+  props: { srcSet: desktopImageSrcSet },
+} = getImageProps({ ...imageProps, src: background });
+const {
+  props: { srcSet: mobileImageSrcSet, ...mobileImageProps },
+} = getImageProps({ ...imageProps, src: backgroundMobile, fetchPriority: "high" });
+
 export function Hero() {
   const ref = useRef<HTMLElement>(null);
   const reduced = useReducedMotion();
+  const updateWordLight = (event: PointerEvent<HTMLSpanElement>) => {
+    if (event.pointerType !== "mouse") return;
+
+    const bounds = event.currentTarget.getBoundingClientRect();
+    const position = ((event.clientX - bounds.left) / bounds.width) * 100;
+    event.currentTarget.style.setProperty("--light-x", `${Math.max(0, Math.min(position, 100))}%`);
+  };
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start start", "end start"],
@@ -27,52 +51,68 @@ export function Hero() {
     >
       <motion.div className={styles.parallax} style={{ y: reduced ? 0 : y }}>
         <div className={styles.imageReveal}>
-          <Image
-            src={background}
-            alt=""
-            fill
-            preload
-            sizes="100vw"
-            className={styles.image}
-          />
+          <picture className={styles.picture}>
+            <source media="(min-width: 761px)" srcSet={desktopImageSrcSet} />
+            <source media="(max-width: 760px)" srcSet={mobileImageSrcSet} />
+            <img {...mobileImageProps} alt="" className={styles.image} />
+          </picture>
         </div>
       </motion.div>
       <div className={styles.content}>
         <div className={styles.headline}>
           <span className={styles.label}>DESIGN & TECNOLOGIA SOB MEDIDA</span>
           <h1 id="hero-title" className={styles.title}>
-            {["Sites que", "impressionam.", "Sistemas que", "resolvem."].map(
-              (line, index) => (
+            <span className={styles.desktopTitle}>
+              {desktopLines.map(([prefix, emphasis], index) => (
+                <span key={emphasis} className={styles.mask}>
+                  <span
+                    className={`${styles.line} ${index === 1 ? `${styles.lineSecondary} ${styles.lineFromRight}` : ""}`}
+                    style={{ animationDelay: `${360 + index * 1500}ms` }}
+                  >
+                    <span className={styles.linePrefix}>{prefix} </span>
+                    <span
+                      className={styles.lineEmphasis}
+                      data-word={emphasis}
+                      onPointerMove={updateWordLight}
+                    >
+                      {emphasis}
+                    </span>
+                  </span>
+                </span>
+              ))}
+            </span>
+            <span className={styles.mobileTitle}>
+              {mobileLines.map((line, index) => (
                 <span
                   key={line}
-                  className={`${styles.mask} ${index === 2 ? styles.secondThought : ""}`}
+                  className={`${styles.mask} ${index === 2 ? styles.mobileSecondThought : ""}`}
                 >
                   <span
-                    className={styles.line}
-                    style={{ animationDelay: `${280 + index * 110}ms` }}
+                    className={`${styles.line} ${index >= 2 ? styles.lineFromRight : ""}`}
+                    style={{ animationDelay: `${360 + Math.floor(index / 2) * 1500}ms` }}
                   >
-                    {line}
-                    {index === 3 && (
-                      <i className={styles.dot} aria-hidden="true" />
+                    {emphasisWords.has(line) ? (
+                      <span
+                        className={styles.lineEmphasis}
+                        data-word={line}
+                        onPointerMove={updateWordLight}
+                      >
+                        {line}
+                      </span>
+                    ) : (
+                      <span className={styles.linePrefix}>{line}</span>
                     )}
                   </span>
-                  {index < 3 ? " " : null}
                 </span>
-              ),
-            )}
+              ))}
+            </span>
           </h1>
         </div>
-        <div className={styles.copy}>
-          <p>
-            Desenvolvemos experiências digitais e sistemas web sob medida para
-            transformar ideias em produtos reais.
-          </p>
-          <a className={styles.cta} href="#contato">
-            Quero meu projeto <ArrowUpRight size={19} strokeWidth={1.5} />
-          </a>
-        </div>
         <a className={styles.explore} href="#projetos">
-          <ArrowDown size={16} strokeWidth={1.5} /> Explorar projetos
+          <span>Explorar</span>
+          <span className={styles.exploreArrow} aria-hidden="true">
+            <ArrowDown size={16} strokeWidth={1.5} />
+          </span>
         </a>
       </div>
     </section>

@@ -5,6 +5,7 @@
   position: fixed;
   inset: 0 0 auto;
   z-index: 30;
+  isolation: isolate;
   color: #f6f6f0;
   background: transparent;
   border-bottom: 1px solid transparent;
@@ -14,14 +15,24 @@
     border-color 0.45s ease,
     backdrop-filter 0.45s ease;
 }
+.header:before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  z-index: -1;
+  height: clamp(110px, 18svh, 180px);
+  pointer-events: none;
+  background: linear-gradient(180deg, rgb(5 7 5 / 0.46), rgb(5 7 5 / 0.16) 58%, transparent);
+  transition: opacity 0.45s ease;
+}
 .inner {
   width: calc(100% - clamp(40px, 8vw, 144px));
   max-width: 1680px;
   margin: auto;
-  min-height: 104px;
-  display: flex;
+  min-height: clamp(104px, 12svh, 128px);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
   align-items: center;
-  gap: 34px;
   transition: min-height 0.45s ease;
   animation: enter 0.65s 0.15s both;
 }
@@ -30,22 +41,19 @@
   letter-spacing: -1.2px;
   font-weight: 700;
   line-height: 0.96;
-  flex-shrink: 0;
+  justify-self: start;
 }
 .brand > span {
   display: block;
+  font-size: 0.88em;
   font-weight: 400;
-}
-.degree {
-  font-size: 19px;
-  vertical-align: top;
-  margin-left: 2px;
 }
 .desktop {
   display: flex;
-  gap: clamp(22px, 2.5vw, 40px);
-  margin-left: auto;
-  font-size: 12px;
+  grid-column: 2;
+  gap: clamp(26px, 2.6vw, 42px);
+  font-size: 15px;
+  font-weight: 500;
 }
 .desktop a {
   position: relative;
@@ -54,32 +62,97 @@
 .desktop a:after {
   content: "";
   height: 1px;
+  width: 24px;
   position: absolute;
-  left: 0;
-  right: 0;
+  left: 50%;
   bottom: 4px;
-  background: currentColor;
-  transform: scaleX(0);
-  transform-origin: left;
+  background: var(--green);
+  transform: translateX(-50%) scaleX(0);
+  transform-origin: center;
   transition: transform 0.25s;
 }
-.desktop a:hover:after {
-  transform: scaleX(1);
+.desktop a:hover:after,
+.desktop a:focus-visible:after {
+  transform: translateX(-50%) scaleX(1);
 }
 .cta {
-  display: flex;
-  align-items: center;
-  gap: 24px;
-  border: 1px solid #ffffff60;
-  border-radius: 30px;
-  padding: 13px 20px;
-  font-size: 11px;
+  display: grid;
+  grid-column: 3;
+  justify-self: end;
+  grid-template-columns: minmax(0, 1fr) 44px;
+  color: #171a16;
+  background: rgb(247 247 242 / 0.9);
+  border: 1px solid transparent;
+  min-width: 184px;
+  min-height: 46px;
+  border-radius: 9px;
+  padding-left: 0;
+  font-size: 15.5px;
+  font-weight: 500;
   transition:
-    background 0.25s,
-    border-color 0.45s;
+    background 0.22s ease,
+    color 0.25s ease,
+    transform 0.22s ease;
 }
-.cta:hover {
-  background: #ffffff15;
+.cta:hover,
+.cta:focus-visible {
+  background: rgb(247 247 242 / 0.98);
+  transform: translateY(-1px);
+}
+.ctaText {
+  position: relative;
+  display: grid;
+  place-items: center;
+  align-self: stretch;
+  height: auto;
+  overflow: hidden;
+  text-align: center;
+}
+.ctaText > span {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  white-space: nowrap;
+  transition:
+    opacity 0.22s ease,
+    transform 0.22s ease;
+}
+.ctaHover {
+  opacity: 0;
+  transform: translateY(5px);
+}
+.ctaArrow {
+  display: grid;
+  place-items: center;
+  align-self: stretch;
+  border-left: 1px solid rgb(23 26 22 / 0.12);
+  border-radius: 0 8px 8px 0;
+  transition:
+    background 0.22s ease,
+    color 0.22s ease;
+}
+.ctaArrow svg {
+  transition: transform 0.22s ease;
+}
+.cta:hover .ctaDefault,
+.cta:focus-visible .ctaDefault {
+  opacity: 0;
+  transform: translateY(-5px);
+}
+.cta:hover .ctaHover,
+.cta:focus-visible .ctaHover {
+  opacity: 1;
+  transform: translateY(0);
+}
+.cta:hover .ctaArrow,
+.cta:focus-visible .ctaArrow {
+  color: #171a16;
+  background: var(--green);
+}
+.cta:hover .ctaArrow svg,
+.cta:focus-visible .ctaArrow svg {
+  transform: translate(2px, -2px);
 }
 .header a:focus-visible,
 .header button:focus-visible {
@@ -88,6 +161,8 @@
 }
 .toggle {
   display: none;
+  position: relative;
+  z-index: 1;
 }
 .scrolled {
   background: #f7f7f2ed;
@@ -95,14 +170,18 @@
   backdrop-filter: blur(14px);
   border-color: #22251f12;
 }
+.scrolled:before {
+  opacity: 0;
+}
 .scrolled .inner {
   min-height: 76px;
 }
 .scrolled .cta {
-  border-color: #22251f50;
+  color: var(--paper);
+  background: var(--ink);
 }
 .scrolled .cta:hover {
-  background: #22251f0a;
+  background: #3b4038;
 }
 .mobile {
   display: none;
@@ -119,7 +198,8 @@
 }
 @media (max-width: 760px) {
   .inner {
-    min-height: 84px;
+    min-height: 92px;
+    display: flex;
     justify-content: space-between;
     gap: 20px;
   }
@@ -133,11 +213,11 @@
   .toggle {
     display: grid;
     place-items: center;
-    border: 1px solid #ffffff50;
+    border: 1px solid #ffffff3d;
     background: transparent;
     color: inherit;
-    width: 44px;
-    height: 44px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
   }
   .scrolled .inner {
@@ -156,9 +236,11 @@
   }
   .mobile:not([hidden]) {
     display: flex;
+    position: relative;
+    z-index: 1;
     flex-direction: column;
     padding: 8px 24px 26px;
-    max-height: calc(100dvh - 84px);
+    max-height: calc(100dvh - 92px);
     overflow-y: auto;
   }
   .mobile a {
@@ -182,6 +264,9 @@
   .header,
   .inner,
   .cta,
+  .ctaArrow,
+  .ctaArrow svg,
+  .ctaText > span,
   .desktop a:after {
     transition: none;
     animation: none;
