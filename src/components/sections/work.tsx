@@ -1,24 +1,14 @@
+"use client";
+import { useState } from "react";
 import { ArrowUpRight } from "lucide-react";
 import { images, projects, services } from "@/data/content";
 import { Visual } from "@/components/ui/visual";
-export function Showreel() {
-  return (
-    <section
-      className="shell showreel"
-      aria-label="Apresentação visual do Studio"
-    >
-      <Visual asset={images.showreel} />
-      <div className="visual-footnote">
-        <span>ESTÉTICA QUE CONECTA. TECNOLOGIA QUE ENTREGA.</span>
-        <span>Uma divisão da SWNexa ↗</span>
-      </div>
-    </section>
-  );
-}
 export function Services() {
+  const [activeService, setActiveService] = useState(0);
+
   return (
-    <section id="servicos" className="shell section">
-      <div className="section-heading">
+    <section id="servicos" className="shell section servicesSection">
+      <div className="section-heading servicesHeading">
         <span className="eyebrow">01 / O QUE CRIAMOS</span>
         <h2>
           Boas ideias merecem
@@ -26,22 +16,58 @@ export function Services() {
           uma execução à altura.
         </h2>
       </div>
-      <div className="services">
+      <div className="servicesEditorial" data-active={activeService}>
+        <div className="servicesEditorialList">
         {services.map((service, i) => (
-          <article className="service" key={service.title}>
-            <span className="service-number">0{i + 1}</span>
-            <div>
-              <h3>{service.title}</h3>
+          <button
+            type="button"
+            className="serviceFeature"
+            key={service.title}
+            data-active={activeService === i}
+            aria-label={`Serviço ${i + 1}: ${service.title}`}
+            aria-pressed={activeService === i}
+            onMouseEnter={() => setActiveService(i)}
+            onMouseLeave={() => setActiveService(0)}
+            onFocus={() => setActiveService(i)}
+            onClick={() => setActiveService(i)}
+          >
+            <span className="serviceFeatureIndex">0{i + 1}</span>
+            <div className="serviceFeatureBody">
+              <div className="serviceFeatureTitle">
+                <h3>{service.title}</h3>
+                <ArrowUpRight className="serviceFeatureArrow" size={28} strokeWidth={1.25} />
+              </div>
               <p>{service.text}</p>
-              <ul>
-                {service.items.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
+              <p className="serviceFeatureCategories">{service.items.join(" / ")}</p>
             </div>
-            <ArrowUpRight className="service-arrow" size={30} strokeWidth={1} />
-          </article>
+          </button>
         ))}
+        </div>
+        <div className="servicePreview" aria-hidden="true">
+          <div className="servicePreviewFrame previewSite">
+            <span className="previewSiteChrome" />
+            <span className="previewSiteEyebrow" />
+            <span className="previewSiteTitle" />
+            <span className="previewSiteTitle previewSiteTitleShort" />
+            <span className="previewSiteColumns">
+              <i />
+              <i />
+              <i />
+            </span>
+            <span className="previewSiteLine" />
+          </div>
+          <div className="servicePreviewFrame previewSystem">
+            <span className="previewSystemHeading" />
+            <span className="previewSystemStat"><i /><i /></span>
+            <span className="previewSystemRows">
+              <i />
+              <i />
+              <i />
+              <i />
+            </span>
+            <span className="previewSystemChart"><i /><i /><i /><i /><i /></span>
+          </div>
+        </div>
       </div>
     </section>
   );

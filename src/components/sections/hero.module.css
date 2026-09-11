@@ -1,3 +1,9 @@
+@property --word-cutout-opacity {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 1;
+}
+
 .hero {
   position: relative;
   isolation: isolate;
@@ -53,6 +59,9 @@
 .headline {
   align-self: center;
 }
+.exitFade {
+  opacity: var(--hero-exit-opacity, 1);
+}
 .label {
   font-size: clamp(11px, 0.78vw, 13px);
   font-weight: 500;
@@ -86,6 +95,9 @@
 .mobileTitle {
   display: none;
 }
+.mobileThought {
+  display: block;
+}
 .mask {
   display: block;
   overflow: hidden;
@@ -109,6 +121,7 @@
 }
 .lineEmphasis {
   --light-x: 50%;
+  --word-cutout-opacity: 1;
   position: relative;
   display: inline-block;
   font-size: 1.055em;
@@ -116,25 +129,24 @@
   letter-spacing: -0.052em;
 }
 @media (hover: hover) and (min-width: 761px) and (prefers-reduced-motion: no-preference) {
-  .lineEmphasis:after {
-    content: attr(data-word);
-    position: absolute;
-    inset: 0;
-    color: transparent;
-    background: radial-gradient(
-      34% 135% at var(--light-x) 50%,
-      rgb(210 239 133 / 0.72) 0%,
-      rgb(247 247 242 / 0.62) 32%,
-      transparent 74%
+  .lineEmphasis {
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Ccircle cx='10' cy='10' r='7' fill='none' stroke='%23f5f5ee' stroke-width='1.5'/%3E%3C/svg%3E") 10 10, crosshair;
+    -webkit-mask-image: radial-gradient(
+      22% 75% at var(--light-x) 50%,
+      rgb(0 0 0 / var(--word-cutout-opacity)) 0%,
+      rgb(0 0 0 / var(--word-cutout-opacity)) 36%,
+      #000 80%
     );
-    -webkit-background-clip: text;
-    background-clip: text;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.24s ease;
+    mask-image: radial-gradient(
+      22% 75% at var(--light-x) 50%,
+      rgb(0 0 0 / var(--word-cutout-opacity)) 0%,
+      rgb(0 0 0 / var(--word-cutout-opacity)) 36%,
+      #000 80%
+    );
+    transition: --word-cutout-opacity 0.24s ease;
   }
-  .lineEmphasis:hover:after {
-    opacity: 1;
+  .lineEmphasis:hover {
+    --word-cutout-opacity: 0.5;
   }
 }
 .explore {
@@ -146,70 +158,40 @@
   font-size: 16px;
   font-weight: 500;
   letter-spacing: 0.02em;
-  grid-column: 1/-1;
-  justify-self: end;
   color: #e0e2d8;
   border-radius: 8px;
   animation: appear 0.6s 3s both;
 }
-.explore > span:first-child {
-  display: block;
+.exploreExit {
+  grid-column: 1/-1;
+  justify-self: end;
 }
-.explore > span:first-child:before,
+.explore:before,
 .explore:after {
   content: "";
   position: absolute;
-  right: -5px;
+  right: 9px;
   bottom: 0;
-  left: -5px;
+  left: 9px;
   height: 2px;
-}
-.explore > span:first-child:before {
-  background: rgb(224 226 216 / 0.38);
-  transition: opacity 0.18s ease;
+  border-radius: 999px;
 }
 .explore:after {
+  background: rgb(224 226 216 / 0.38);
+}
+.explore:before {
   background: var(--green);
-  clip-path: inset(0 0 0 100%);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.28s ease;
 }
 .exploreArrow {
   display: grid;
   place-items: center;
 }
 @media (hover: hover) and (prefers-reduced-motion: no-preference) {
-  .explore:hover > span:first-child:before {
-    opacity: 0;
-  }
-  .explore:hover:after {
-    animation: explore-path-bottom 0.5s linear both;
-  }
-  .explore:hover:before {
-    content: "";
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: -5px;
-    width: 2px;
-    background: var(--green);
-    clip-path: inset(100% 0 0 0);
-    animation: explore-path-left 0.5s linear both;
-  }
-  .explore:hover > span:first-child:after {
-    content: "";
-    position: absolute;
-    top: 0;
-    right: -5px;
-    left: -5px;
-    height: 2px;
-    background: var(--green);
-    clip-path: inset(0 100% 0 0);
-    animation: explore-path-top 0.5s linear both;
-  }
-  .explore:hover .exploreArrow {
-    animation: explore-arrow-accent 0.01s linear 0.5s forwards;
-  }
-  .explore:hover .exploreArrow svg {
-    animation: explore-arrow-scroll 0.8s ease-in-out infinite 0.5s;
+  .explore:is(:hover, :focus-visible):before {
+    transform: scaleX(1);
   }
 }
 .hero a:focus-visible {
@@ -251,68 +233,6 @@
   to {
     opacity: 1;
     transform: translateY(0);
-  }
-}
-@keyframes explore-arrow-scroll {
-  0% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  45% {
-    opacity: 0;
-    transform: translateY(7px);
-  }
-  46% {
-    opacity: 0;
-    transform: translateY(-7px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-@keyframes explore-path-bottom {
-  0% {
-    clip-path: inset(0 0 0 100%);
-  }
-  29%,
-  86% {
-    clip-path: inset(0);
-  }
-  100% {
-    clip-path: inset(0 0 0 100%);
-    opacity: 0;
-  }
-}
-@keyframes explore-path-left {
-  0%,
-  29% {
-    clip-path: inset(100% 0 0 0);
-  }
-  55%,
-  86% {
-    clip-path: inset(0);
-  }
-  100% {
-    clip-path: inset(0 0 100% 0);
-    opacity: 0;
-  }
-}
-@keyframes explore-path-top {
-  0%,
-  55% {
-    clip-path: inset(0 100% 0 0);
-  }
-  86% {
-    clip-path: inset(0);
-  }
-  100% {
-    clip-path: inset(0 0 0 100%);
-  }
-}
-@keyframes explore-arrow-accent {
-  to {
-    color: var(--green);
   }
 }
 @media (min-width: 761px) and (max-width: 1100px) {
@@ -386,10 +306,12 @@
       linear-gradient(90deg, rgb(0 0 0 / 0.2), transparent 88%),
       linear-gradient(0deg, rgb(0 0 0 / 0.28), transparent 62%);
   }
-  .explore {
+  .exploreExit {
     position: absolute;
     right: 0;
     bottom: max(clamp(34px, 5svh, 48px), calc(env(safe-area-inset-bottom) + 24px));
+  }
+  .explore {
     font-size: 15px;
   }
   .parallax {
@@ -419,6 +341,7 @@
     transform: none !important;
   }
   .explore,
+  .explore:before,
   .explore:after,
   .exploreArrow svg {
     transition: none;

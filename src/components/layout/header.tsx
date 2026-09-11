@@ -3,8 +3,8 @@ import { useEffect, useRef, useState } from "react";
 import { ArrowUpRight, Menu, X } from "lucide-react";
 import styles from "./header.module.css";
 const links = [
-  ["Projetos", "#projetos"],
   ["Serviços", "#servicos"],
+  ["Projetos", "#projetos"],
   ["Processo", "#processo"],
   ["Contato", "#contato"],
 ];
@@ -13,10 +13,22 @@ export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const toggle = useRef<HTMLButtonElement>(null);
   useEffect(() => {
-    const updateScrolled = () => setScrolled(window.scrollY > 0);
-    updateScrolled();
+    const updateScrolled = () => {
+      const hero = document.getElementById("studio-hero");
+
+      setScrolled(Boolean(hero && hero.getBoundingClientRect().bottom <= 0));
+    };
+
+    const frame = window.requestAnimationFrame(updateScrolled);
     window.addEventListener("scroll", updateScrolled, { passive: true });
-    return () => window.removeEventListener("scroll", updateScrolled);
+    window.addEventListener("resize", updateScrolled);
+    window.addEventListener("hashchange", updateScrolled);
+    return () => {
+      window.cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", updateScrolled);
+      window.removeEventListener("resize", updateScrolled);
+      window.removeEventListener("hashchange", updateScrolled);
+    };
   }, []);
   useEffect(() => {
     const desktop = window.matchMedia("(min-width: 761px)");
@@ -28,6 +40,7 @@ export function Header() {
   }, []);
   return (
     <header
+      data-site-header
       className={`${styles.header} ${scrolled ? styles.scrolled : ""} ${open ? styles.open : ""}`}
       onKeyDown={(event) => {
         if (event.key === "Escape" && open) {
