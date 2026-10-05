@@ -18,29 +18,6 @@ export const images: Record<string, VisualAsset> = {
   fluxio: { src: null, alt: "Apresentação do Fluxio", theme: "fluxio" },
   produtiv: { src: null, alt: "Apresentação do Produtiv", theme: "produtiv" },
 };
-// Dados internos provisórios: revisar nomes, categorias e descrições antes de publicar cases.
-export const projects: {
-  name: string;
-  category: string;
-  description: string;
-  image: string;
-  year?: string;
-  href?: string;
-}[] = [
-  {
-    name: "Fluxio",
-    category: "Sistema web · Ecossistema SWNexa",
-    description: "Espaço reservado para apresentar o produto e seus desafios.",
-    image: "fluxio",
-  },
-  {
-    name: "Produtiv",
-    category: "Produto digital · Ecossistema SWNexa",
-    description:
-      "Espaço reservado para apresentar a experiência e seus detalhes.",
-    image: "produtiv",
-  },
-];
 export const services = [
   {
     title: "Sites & experiências digitais",

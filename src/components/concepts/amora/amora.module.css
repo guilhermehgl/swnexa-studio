@@ -1,0 +1,1155 @@
+.page {
+  --cream: #f4ecd9;
+  --wine: #633b43;
+  --clay: #b67558;
+  --brown: #6c4c38;
+  --serif: Georgia, "Palatino Linotype", serif;
+  background: var(--cream);
+  color: var(--wine);
+  font-family: var(--font-instrument-sans), Arial, sans-serif;
+  overflow: clip;
+}
+.page ::selection {
+  background: #d4b9a0;
+  color: #633b43;
+}
+.page :is(a, button, summary, [tabindex]):focus-visible {
+  outline: 2px solid #96514d;
+  outline-offset: 5px;
+}
+.page h1,
+.page h2 {
+  font-family: var(--serif);
+  font-weight: 400;
+  letter-spacing: -0.055em;
+  line-height: 1.08;
+}
+.page h3 {
+  font-weight: 400;
+}
+.page em {
+  font-weight: 400;
+}
+.page section {
+  scroll-margin-top: 145px;
+}
+.eyebrow {
+  display: block;
+  font-size: 9px;
+  letter-spacing: 0.11em;
+  line-height: 1.6;
+}
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 25;
+  background: var(--cream);
+}
+.headerTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 5vw;
+  background: #e9dfca;
+  font-size: 9px;
+  color: #715344;
+}
+.headerTop > span:first-child {
+  font-size: 7px;
+  letter-spacing: 0.12em;
+}
+.headerEdition {
+  font-size: 7px;
+  letter-spacing: 0.1em;
+}
+.headerMain {
+  display: flex;
+  align-items: center;
+  gap: 35px;
+  justify-content: space-between;
+  padding: 18px 5vw;
+  border-bottom: 1px solid #633b431a;
+}
+.brand {
+  font: italic 48px/0.9 var(--serif);
+  letter-spacing: -0.07em;
+}
+.brand > span {
+  display: block;
+  font:
+    6px Arial,
+    sans-serif;
+  letter-spacing: 0.18em;
+  margin: 10px 0 0 5px;
+}
+.desktopNav {
+  display: flex;
+  gap: 34px;
+  font-size: 12px;
+  margin-left: auto;
+  margin-right: 5vw;
+}
+.desktopNav a {
+  padding: 8px 0;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.35s ease;
+}
+.desktopNav a:hover {
+  border-color: currentColor;
+}
+.reserve {
+  display: inline-flex;
+  gap: 25px;
+  align-items: center;
+  padding: 12px 22px;
+  border-radius: 40px;
+  border: 1px solid #a88c77;
+  font-size: 11px;
+  transition: background 0.35s ease;
+}
+.reserve:hover {
+  background: #e5d7be;
+}
+.mobileNav {
+  display: none;
+}
+.hero {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.03fr 1fr;
+  padding: 60px 8vw 40px;
+  gap: 2vw;
+  min-height: 730px;
+}
+.heroCopy {
+  position: relative;
+  z-index: 3;
+  padding-top: 25px;
+}
+.heroCopy .eyebrow {
+  font-size: 8px;
+}
+.heroCopy h1 {
+  font-size: clamp(48px, 5.2vw, 90px);
+  margin-top: 30px;
+}
+.heroCopy h1 em {
+  color: #a16049;
+}
+.heroCopy > p {
+  max-width: 36ch;
+  font-size: 13px;
+  line-height: 1.8;
+  margin-top: 25px;
+  color: #7e6252;
+}
+.textLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 28px;
+  border-bottom: 1px solid #ab8b74;
+  padding: 13px 0;
+  font-size: 11px;
+  margin-top: 18px;
+}
+.textLink span {
+  font-size: 18px;
+  transition: transform 0.45s ease;
+}
+.textLink:hover span {
+  transform: translateY(3px);
+}
+.heroCopy > small {
+  display: block;
+  font-size: 8px;
+  color: #8c715e;
+  margin-top: 32px;
+}
+.heroComposition {
+  position: relative;
+  min-height: 545px;
+}
+.heroPicture {
+  position: relative;
+  width: 92%;
+  height: 485px;
+  margin-left: 8%;
+  transform-origin: center;
+  border-radius: 47% 47% 5% 5%;
+  overflow: hidden;
+  background: #b67558;
+}
+.heroPicture img {
+  transform: rotate(-3deg) scale(1.06);
+}
+.heroDetail {
+  position: absolute;
+  width: 38%;
+  aspect-ratio: 0.93;
+  bottom: 32px;
+  left: -7%;
+  border: 7px solid var(--cream);
+  border-radius: 48% 48% 7% 7%;
+  overflow: hidden;
+  background: #d4c5a6;
+}
+.heroStamp {
+  position: absolute;
+  top: 12px;
+  left: -9%;
+  width: 125px;
+  height: 125px;
+  border-radius: 50%;
+  display: grid;
+  place-content: center;
+  background: #8a8b61;
+  color: #f5ecd3;
+  text-align: center;
+  font: 24px/1.05 var(--serif);
+  transform: rotate(-13deg);
+  z-index: 4;
+}
+.heroStamp svg {
+  width: 25px;
+  height: 25px;
+  margin: 7px auto 0;
+}
+.heroAnnotation {
+  position: absolute;
+  right: 0;
+  bottom: 17px;
+  font-size: 7px;
+  letter-spacing: 0.12em;
+}
+.heroFoot {
+  grid-column: 1/-1;
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  padding-top: 30px;
+  border-top: 1px solid #bda48766;
+  font-size: 8px;
+  letter-spacing: 0.06em;
+  color: #8c715e;
+}
+.heroFoot span:last-child {
+  letter-spacing: 0;
+  font-size: 10px;
+}
+.story {
+  padding: 110px 9vw;
+  display: grid;
+  grid-template-columns: 0.9fr 1fr;
+  align-items: center;
+  gap: 9vw;
+}
+.storyPicture {
+  position: relative;
+  aspect-ratio: 0.85;
+  background: #e1d3b9;
+  border-radius: 6px 6px 42% 5px;
+  overflow: hidden;
+}
+.storyPicture img {
+  object-position: 40% center;
+}
+.storyPicture > span {
+  position: absolute;
+  bottom: 30px;
+  left: 25px;
+  right: 25px;
+  font-size: 7px;
+  letter-spacing: 0.08em;
+  color: #633b43;
+  background: #f4ecd9d9;
+  padding: 9px;
+}
+.storyCopy {
+  position: relative;
+}
+.storyFlower {
+  width: 65px;
+  height: 65px;
+  margin-bottom: 35px;
+  color: #aa765b;
+}
+.storyCopy h2 {
+  font-size: clamp(38px, 3.7vw, 63px);
+  margin: 25px 0 30px;
+}
+.storyCopy p {
+  max-width: 40ch;
+  font-size: 13px;
+  line-height: 1.8;
+  color: #816556;
+}
+.storyCopy p + p {
+  margin-top: 18px;
+}
+.storyCopy p:last-child {
+  font-size: 11px;
+  color: #9b7d68;
+  padding-top: 19px;
+  margin-top: 25px;
+  border-top: 1px solid #cbbb9d;
+}
+.ritual {
+  background: #dfc2a5;
+  padding: 90px 8vw 70px;
+  border-radius: 80px 80px 0 0;
+}
+.ritualIntro {
+  max-width: 640px;
+}
+.ritualIntro h2 {
+  font-size: clamp(38px, 4.1vw, 68px);
+  margin-top: 24px;
+}
+.ritualIntro > p {
+  font-size: 12px;
+  line-height: 1.8;
+  margin-top: 20px;
+  max-width: 46ch;
+  color: #81604c;
+}
+.ritualLayout {
+  display: grid;
+  grid-template-columns: 0.9fr 1fr;
+  gap: 7vw;
+  margin-top: 42px;
+  align-items: center;
+}
+.ritualTabs {
+  border-top: 1px solid #ab876d88;
+}
+.ritualTabs button {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid #ab876d88;
+  padding: 24px 12px;
+  color: var(--wine);
+  transition: background 0.4s ease;
+}
+.ritualTabs button > span:first-child {
+  font-size: 9px;
+  align-self: start;
+  padding-top: 8px;
+  color: #926951;
+}
+.ritualTabs button strong {
+  display: block;
+  font: 33px var(--serif);
+  letter-spacing: -0.04em;
+}
+.ritualTabs button small {
+  display: block;
+  margin-top: 8px;
+  font-size: 11px;
+  color: #87624d;
+  line-height: 1.6;
+}
+.ritualTabs button > span:last-child {
+  margin-left: auto;
+  font-size: 22px;
+  transition: transform 0.4s ease;
+}
+.ritualTabs button:hover,
+.ritualTabs button[aria-selected="true"] {
+  background: #eed8bf;
+}
+.ritualTabs button[aria-selected="true"] > span:last-child {
+  transform: rotate(35deg);
+}
+.ritualPanel {
+  min-width: 0;
+}
+.plateStage {
+  position: relative;
+}
+.plateStage svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.plateNote {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 15px;
+  font-size: 7px;
+  letter-spacing: 0.12em;
+  white-space: nowrap;
+  color: #87624d;
+}
+.ingredient {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: ingredientArrival 0.7s ease both;
+}
+.ritualDescription {
+  max-width: 38ch;
+  margin: 15px auto 0;
+  min-height: 100px;
+}
+.ritualDescription > span {
+  font: italic 23px var(--serif);
+}
+.ritualDescription p {
+  font-size: 11px;
+  line-height: 1.8;
+  margin-top: 12px;
+  color: #87624d;
+}
+.menu {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 10vw;
+  padding: 115px 9vw;
+}
+.menuIntro h2 {
+  font-size: clamp(40px, 4.2vw, 70px);
+  margin-top: 24px;
+}
+.menuIntro p {
+  margin-top: 25px;
+  max-width: 34ch;
+  font-size: 12px;
+  line-height: 1.8;
+  color: #816556;
+}
+.menuPicture {
+  position: relative;
+  width: 85%;
+  aspect-ratio: 1.15;
+  margin-top: 38px;
+  border-radius: 50% 50% 4px 4px;
+  overflow: hidden;
+}
+.menuIntro small {
+  display: block;
+  font-size: 8px;
+  line-height: 1.7;
+  margin-top: 24px;
+  color: #947965;
+}
+.menuCategory {
+  margin-bottom: 28px;
+}
+.menuCategory h3 {
+  font: italic 28px var(--serif);
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 8px;
+}
+.menuCategory h3 > span {
+  font:
+    8px Arial,
+    sans-serif;
+  color: #a18068;
+}
+.menuCategory ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.menuCategory li {
+  padding: 13px 0 14px 30px;
+  border-bottom: 1px solid #d8c8ad;
+}
+.menuCategory li > span {
+  font-size: 15px;
+  color: #755041;
+}
+.menuCategory li > p {
+  font-size: 10px;
+  color: #927660;
+  line-height: 1.7;
+  margin-top: 5px;
+}
+.moments {
+  padding: 90px 7vw 100px;
+  background: #b9795d;
+  color: #f4e7cd;
+}
+.momentsHeading {
+  text-align: center;
+  position: relative;
+  max-width: 750px;
+  margin: auto;
+}
+.momentsHeading h2 {
+  font-size: clamp(44px, 5vw, 80px);
+  margin-top: 25px;
+}
+.momentsHeading p {
+  font-size: 12px;
+  line-height: 1.8;
+  max-width: 41ch;
+  margin: 25px auto 0;
+}
+.momentsHeading > svg {
+  width: 45px;
+  height: 45px;
+  margin: 25px auto 0;
+}
+.gallery {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr 0.8fr;
+  gap: 4vw;
+  margin-top: 52px;
+  align-items: start;
+}
+.gallery figure {
+  margin: 0;
+}
+.gallery figure > div {
+  position: relative;
+  overflow: hidden;
+}
+.galleryFood {
+  padding-top: 60px;
+}
+.galleryFood figure > div {
+  aspect-ratio: 0.9;
+  border-radius: 6px 6px 40% 5px;
+}
+.galleryTable figure > div {
+  aspect-ratio: 0.85;
+  border-radius: 45% 45% 5px 5px;
+}
+.galleryDetail {
+  padding-top: 130px;
+}
+.galleryDetail figure > div {
+  aspect-ratio: 1;
+  border-radius: 50%;
+}
+.gallery figcaption {
+  font: italic 16px var(--serif);
+  padding-top: 16px;
+}
+.place {
+  display: grid;
+  grid-template-columns: 1.25fr 1fr;
+  gap: 0;
+  align-items: center;
+  background: #e8ddc7;
+}
+.placePicture {
+  position: relative;
+  align-self: stretch;
+  min-height: 600px;
+}
+.placePicture > span {
+  position: absolute;
+  left: 30px;
+  bottom: 26px;
+  padding: 9px;
+  background: #f4ecd9d9;
+  font-size: 7px;
+  letter-spacing: 0.06em;
+}
+.placeCopy {
+  padding: 85px 7vw 85px 6vw;
+}
+.placeCopy h2 {
+  margin-top: 28px;
+  font-size: clamp(38px, 3.7vw, 64px);
+}
+.placeCopy p {
+  font-size: 12px;
+  line-height: 1.8;
+  color: #846551;
+  margin-top: 24px;
+}
+.placeCopy small {
+  display: block;
+  font-size: 8px;
+  color: #9c7c66;
+  margin-top: 35px;
+}
+.final {
+  background: var(--wine);
+  color: #f2e4cb;
+  padding: 80px 9vw 45px;
+  text-align: center;
+}
+.finalFlower {
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 25px;
+  color: #c9a382;
+}
+.final h2 {
+  font-size: clamp(43px, 5.3vw, 88px);
+  margin-top: 28px;
+}
+.final p {
+  font-size: 12px;
+  line-height: 1.8;
+  max-width: 58ch;
+  margin: 30px auto 0;
+  color: #d6bca6;
+}
+.final p.finalSecond {
+  font: italic 20px var(--serif);
+  margin-top: 20px;
+}
+.finalActions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  flex-wrap: wrap;
+  margin-top: 30px;
+}
+.primaryCta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  min-height: 58px;
+  min-width: min(100%, 320px);
+  max-width: 100%;
+  padding: 14px 26px;
+  background: #f0e1c7;
+  color: var(--wine);
+  border: 1px solid #f0e1c7;
+  border-radius: 40px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.3;
+  transition:
+    background 0.25s ease,
+    transform 0.25s ease;
+}
+.primaryCta > span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 30px;
+  height: 30px;
+  border: 1px solid #633b4330;
+  border-radius: 50%;
+  font-size: 21px;
+  font-weight: 400;
+  line-height: 1;
+}
+.primaryCta:hover {
+  background: #dec7a8;
+  transform: translateY(-2px);
+}
+.reservationNote {
+  display: block;
+  font-size: 8px;
+  line-height: 1.6;
+  color: #bd9b8b;
+  margin-top: 24px;
+}
+.footer {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr 1.7fr;
+  align-items: start;
+  gap: 30px;
+  text-align: left;
+  border-top: 1px solid #bc94813d;
+  margin-top: 80px;
+  padding-top: 35px;
+}
+.footerBrand {
+  font: italic 44px/0.9 var(--serif);
+  letter-spacing: -0.08em;
+  display: block;
+}
+.footer small {
+  display: block;
+  font-size: 8px;
+  color: #c2a18c;
+  margin-top: 10px;
+  line-height: 1.7;
+}
+.footer > div:nth-child(2) > span {
+  font-size: 11px;
+}
+.footer p {
+  margin: 0;
+  font-size: 8px;
+  color: #bc9a89;
+  line-height: 1.8;
+}
+.footerYear {
+  grid-column: 1/-1;
+  font-size: 7px;
+  color: #bc9a89;
+  letter-spacing: 0.08em;
+}
+@keyframes ingredientArrival {
+  from {
+    opacity: 0;
+    transform: translate(-6px, 10px) rotate(-5deg);
+  }
+  to {
+    opacity: 1;
+    transform: translate(0, 0) rotate(0);
+  }
+}
+@media (max-width: 1100px) {
+  .hero {
+    padding-left: 6vw;
+    padding-right: 6vw;
+    min-height: 680px;
+  }
+  .heroCopy h1 {
+    font-size: clamp(43px, 5.5vw, 65px);
+  }
+  .heroComposition {
+    min-height: 480px;
+  }
+  .heroPicture {
+    height: 430px;
+  }
+  .heroStamp {
+    width: 95px;
+    height: 95px;
+    font-size: 20px;
+  }
+  .desktopNav {
+    gap: 22px;
+    margin-right: 2vw;
+  }
+  .story {
+    padding-left: 6vw;
+    padding-right: 6vw;
+    gap: 6vw;
+  }
+  .ritual {
+    padding-left: 6vw;
+    padding-right: 6vw;
+  }
+  .ritualTabs button {
+    gap: 14px;
+    padding: 20px 9px;
+  }
+  .ritualTabs button small {
+    font-size: 10px;
+  }
+  .menu {
+    padding-left: 6vw;
+    padding-right: 6vw;
+    gap: 6vw;
+  }
+  .placeCopy {
+    padding-left: 5vw;
+    padding-right: 5vw;
+  }
+}
+@media (max-width: 760px) {
+  .page section {
+    scroll-margin-top: 130px;
+  }
+  .headerTop {
+    padding: 9px 5vw;
+    font-size: 8px;
+  }
+  .headerTop > span:first-child {
+    font-size: 6px;
+    letter-spacing: 0.04em;
+  }
+  .headerEdition {
+    display: none;
+  }
+  .headerMain {
+    padding: 14px 5vw;
+    gap: 12px;
+  }
+  .brand {
+    font-size: 39px;
+  }
+  .brand > span {
+    font-size: 5px;
+    margin-top: 7px;
+  }
+  .desktopNav,
+  .reserve {
+    display: none;
+  }
+  .mobileNav {
+    display: block;
+  }
+  .mobileNav summary {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    padding: 10px 0 10px 10px;
+    font-size: 11px;
+    cursor: pointer;
+    list-style: none;
+  }
+  .mobileNav summary::-webkit-details-marker {
+    display: none;
+  }
+  .mobileNav summary > span {
+    font-size: 18px;
+  }
+  .mobileNav[open] summary > span {
+    transform: rotate(45deg);
+  }
+  .mobileNav nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--cream);
+    border-bottom: 1px solid #c9b99c;
+    padding: 16px 6vw 24px;
+    box-shadow: 0 8px 10px #633b4310;
+  }
+  .mobileNav nav a {
+    display: block;
+    padding: 12px 0;
+    font-size: 13px;
+  }
+  .mobileNav nav a:last-child {
+    font-size: 11px;
+    border-top: 1px solid #c9b99c;
+    margin-top: 10px;
+    padding-top: 20px;
+  }
+  .hero {
+    display: block;
+    padding: 35px 6vw 25px;
+    min-height: 0;
+  }
+  .heroCopy {
+    padding-top: 0;
+  }
+  .heroCopy .eyebrow {
+    font-size: 6px;
+  }
+  .heroCopy h1 {
+    font-size: clamp(43px, 11.5vw, 75px);
+    margin-top: 22px;
+  }
+  .heroCopy > p {
+    font-size: 11px;
+    max-width: 35ch;
+    margin-top: 20px;
+  }
+  .textLink {
+    margin-top: 13px;
+    padding: 10px 0;
+    font-size: 10px;
+  }
+  .heroCopy > small {
+    font-size: 7px;
+    margin-top: 20px;
+  }
+  .heroComposition {
+    min-height: 0;
+    height: 380px;
+    margin: 30px -6vw 0;
+  }
+  .heroPicture {
+    height: 320px;
+    width: 71%;
+    margin-left: 23%;
+    border-radius: 45% 45% 3% 3%;
+  }
+  .heroDetail {
+    width: 32%;
+    bottom: 10px;
+    left: 5%;
+    border-width: 5px;
+  }
+  .heroStamp {
+    width: 80px;
+    height: 80px;
+    font-size: 17px;
+    top: 18px;
+    left: 7%;
+  }
+  .heroStamp svg {
+    width: 18px;
+    height: 18px;
+    margin-top: 5px;
+  }
+  .heroAnnotation {
+    bottom: 17px;
+    right: 6vw;
+    max-width: 40%;
+    text-align: right;
+    font-size: 6px;
+    line-height: 1.7;
+  }
+  .heroFoot {
+    padding-top: 20px;
+    margin-top: 28px;
+    font-size: 6px;
+  }
+  .heroFoot span:last-child {
+    font-size: 8px;
+  }
+  .story {
+    grid-template-columns: 1fr;
+    padding: 65px 7vw;
+    gap: 32px;
+  }
+  .storyCopy {
+    grid-row: 1;
+  }
+  .storyFlower {
+    width: 42px;
+    height: 42px;
+    margin-bottom: 22px;
+  }
+  .storyCopy h2 {
+    font-size: clamp(34px, 9vw, 55px);
+    margin: 20px 0 24px;
+  }
+  .storyCopy p {
+    font-size: 12px;
+    max-width: none;
+  }
+  .storyCopy p:last-child {
+    font-size: 10px;
+  }
+  .storyPicture {
+    width: 78%;
+    justify-self: end;
+    aspect-ratio: 1.1;
+    border-radius: 5px 5px 36% 5px;
+  }
+  .storyPicture > span {
+    bottom: 20px;
+    left: 16px;
+    right: 16px;
+    font-size: 6px;
+  }
+  .ritual {
+    padding: 55px 6vw 45px;
+    border-radius: 40px 40px 0 0;
+  }
+  .ritualIntro h2 {
+    font-size: clamp(32px, 8.6vw, 52px);
+    margin-top: 20px;
+  }
+  .ritualIntro > p {
+    font-size: 11px;
+  }
+  .ritualLayout {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin-top: 25px;
+  }
+  .ritualTabs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border: 0;
+    gap: 6px;
+  }
+  .ritualTabs button {
+    border: 1px solid #b9947580;
+    border-radius: 5px;
+    padding: 12px;
+    gap: 7px;
+    min-height: 72px;
+  }
+  .ritualTabs button strong {
+    font-size: 22px;
+  }
+  .ritualTabs button > span:first-child {
+    font-size: 7px;
+    padding-top: 6px;
+  }
+  .ritualTabs button small {
+    display: none;
+  }
+  .ritualTabs button > span:last-child {
+    font-size: 14px;
+  }
+  .plateStage {
+    max-width: 420px;
+    margin: auto;
+  }
+  .ritualDescription {
+    min-height: 108px;
+    max-width: 35ch;
+    margin-top: 16px;
+  }
+  .ritualDescription > span {
+    font-size: 21px;
+  }
+  .ritualDescription p {
+    font-size: 11px;
+  }
+  .menu {
+    display: block;
+    padding: 65px 7vw;
+  }
+  .menuIntro h2 {
+    font-size: clamp(36px, 9.5vw, 60px);
+  }
+  .menuIntro > p {
+    font-size: 11px;
+    max-width: 36ch;
+  }
+  .menuPicture {
+    width: 49%;
+    margin: 28px 0 0 auto;
+    aspect-ratio: 0.95;
+    border-radius: 47% 47% 5px 5px;
+  }
+  .menuIntro small {
+    max-width: 38ch;
+    font-size: 7px;
+    margin-top: 20px;
+  }
+  .menuList {
+    margin-top: 35px;
+  }
+  .menuCategory h3 {
+    font-size: 25px;
+  }
+  .menuCategory li > span {
+    font-size: 14px;
+  }
+  .menuCategory li {
+    padding-left: 26px;
+  }
+  .moments {
+    padding: 55px 6vw 60px;
+  }
+  .momentsHeading h2 {
+    font-size: clamp(36px, 9.8vw, 60px);
+  }
+  .momentsHeading p {
+    font-size: 11px;
+  }
+  .momentsHeading > svg {
+    width: 32px;
+    height: 32px;
+    margin-top: 20px;
+  }
+  .gallery {
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    margin-top: 35px;
+  }
+  .galleryTable {
+    grid-column: 1/-1;
+    grid-row: 1;
+    width: 80%;
+    justify-self: center;
+  }
+  .galleryTable figure > div {
+    aspect-ratio: 1.15;
+  }
+  .galleryFood {
+    padding-top: 0;
+  }
+  .galleryDetail {
+    padding-top: 45px;
+  }
+  .gallery figcaption {
+    font-size: 12px;
+    padding-top: 10px;
+    line-height: 1.5;
+  }
+  .place {
+    grid-template-columns: 1fr;
+  }
+  .placeCopy {
+    grid-row: 1;
+    padding: 60px 7vw 40px;
+  }
+  .placeCopy h2 {
+    font-size: clamp(35px, 9.5vw, 57px);
+  }
+  .placeCopy p {
+    font-size: 11px;
+  }
+  .placePicture {
+    min-height: 330px;
+  }
+  .placePicture > span {
+    bottom: 20px;
+    left: 20px;
+    font-size: 6px;
+  }
+  .final {
+    padding: 55px 7vw 35px;
+  }
+  .finalFlower {
+    width: 44px;
+    height: 44px;
+  }
+  .final h2 {
+    font-size: clamp(36px, 10vw, 60px);
+  }
+  .final p {
+    font-size: 11px;
+    text-align: center;
+  }
+  .final p.finalSecond {
+    font-size: 18px;
+  }
+  .finalActions {
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 28px;
+  }
+  .primaryCta {
+    padding: 12px 16px;
+    min-height: 54px;
+    gap: 12px;
+    font-size: 12px;
+  }
+  .primaryCta > span {
+    width: 28px;
+    height: 28px;
+    font-size: 20px;
+  }
+  .reservationNote {
+    font-size: 7px;
+  }
+  .footer {
+    grid-template-columns: 1fr 1.15fr;
+    gap: 24px 18px;
+    margin-top: 55px;
+  }
+  .footerBrand {
+    font-size: 37px;
+  }
+  .footer > div:nth-child(2) > span {
+    font-size: 10px;
+  }
+  .footer small {
+    font-size: 7px;
+  }
+  .footer p {
+    grid-column: 1/-1;
+    font-size: 7px;
+    text-align: left;
+  }
+  .footerYear {
+    font-size: 6px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .page *,
+  .page *::before,
+  .page *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+  .textLink:hover span {
+    transform: none;
+  }
+}

@@ -1,0 +1,42 @@
+.bar {
+  position: fixed;
+  right: max(24px, env(safe-area-inset-right));
+  bottom: max(24px, env(safe-area-inset-bottom));
+  z-index: 60;
+  font-family: var(--font-instrument-sans), Arial, sans-serif;
+}
+.link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 44px;
+  padding: 0 16px;
+  border: 1px solid #282823;
+  border-radius: 6px;
+  background: #282823;
+  color: #fffdf7;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.2;
+  white-space: nowrap;
+  box-shadow: 0 4px 18px #00000020;
+}
+.link:hover {
+  background: #45453d;
+}
+.bar .link:focus-visible {
+  outline: 2px solid #282823;
+  outline-offset: 3px;
+}
+@media (max-width: 760px) {
+  .bar {
+    right: max(16px, env(safe-area-inset-right));
+    bottom: max(16px, env(safe-area-inset-bottom));
+  }
+  .link {
+    padding: 0 12px;
+    gap: 8px;
+    font-size: 12px;
+  }
+}

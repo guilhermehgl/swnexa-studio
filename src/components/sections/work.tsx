@@ -1,10 +1,72 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { ArrowUpRight } from "lucide-react";
-import { images, projects, services } from "@/data/content";
-import { Visual } from "@/components/ui/visual";
+import { services } from "@/data/content";
+import { SiteDemo, ClientsDemo } from "./service-demos";
+
+const desktopQuery = "(min-width: 761px)";
+function subscribeViewport(callback: () => void) {
+  const query = window.matchMedia(desktopQuery);
+  query.addEventListener("change", callback);
+  return () => query.removeEventListener("change", callback);
+}
+function desktopSnapshot() {
+  return window.matchMedia(desktopQuery).matches;
+}
+
 export function Services() {
-  const [activeService, setActiveService] = useState(0);
+  const desktop = useSyncExternalStore(
+    subscribeViewport,
+    desktopSnapshot,
+    () => false,
+  );
+  const [scrollService, setScrollService] = useState(0);
+  const [hoverService, setHoverService] = useState<number | null>(null);
+  const [focusService, setFocusService] = useState<number | null>(null);
+  const features = useRef<(HTMLDivElement | null)[]>([]);
+  const activeService = desktop
+    ? (hoverService ?? focusService ?? scrollService)
+    : 0;
+
+  useEffect(() => {
+    const query = window.matchMedia(desktopQuery);
+    const clearOverrides = () => {
+      setHoverService(null);
+      setFocusService(null);
+    };
+    query.addEventListener("change", clearOverrides);
+    return () => query.removeEventListener("change", clearOverrides);
+  }, []);
+
+  useEffect(() => {
+    if (!desktop) return;
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      const center = window.innerHeight / 2;
+      const distances = features.current.map((feature) => {
+        if (!feature) return Infinity;
+        const rect = feature.getBoundingClientRect();
+        return Math.abs(rect.top + rect.height / 2 - center);
+      });
+      const nearest = distances.indexOf(Math.min(...distances));
+      // Require a 32px advantage before switching around the midpoint.
+      setScrollService((current) =>
+        distances[nearest] + 32 < distances[current] ? nearest : current,
+      );
+    };
+    const schedule = () => {
+      if (!frame) frame = requestAnimationFrame(update);
+    };
+    schedule();
+    window.addEventListener("scroll", schedule, { passive: true });
+    window.addEventListener("resize", schedule);
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", schedule);
+      window.removeEventListener("resize", schedule);
+    };
+  }, [desktop]);
 
   return (
     <section id="servicos" className="shell section servicesSection">
@@ -18,96 +80,83 @@ export function Services() {
       </div>
       <div className="servicesEditorial" data-active={activeService}>
         <div className="servicesEditorialList">
-        {services.map((service, i) => (
-          <button
-            type="button"
-            className="serviceFeature"
-            key={service.title}
-            data-active={activeService === i}
-            aria-label={`Serviço ${i + 1}: ${service.title}`}
-            aria-pressed={activeService === i}
-            onMouseEnter={() => setActiveService(i)}
-            onMouseLeave={() => setActiveService(0)}
-            onFocus={() => setActiveService(i)}
-            onClick={() => setActiveService(i)}
-          >
-            <span className="serviceFeatureIndex">0{i + 1}</span>
-            <div className="serviceFeatureBody">
-              <div className="serviceFeatureTitle">
-                <h3>{service.title}</h3>
-                <ArrowUpRight className="serviceFeatureArrow" size={28} strokeWidth={1.25} />
+          {services.map((service, i) => (
+            <article
+              className="serviceEntry"
+              key={service.title}
+              aria-labelledby={`service-title-${i}`}
+            >
+              <div
+                ref={(element) => {
+                  features.current[i] = element;
+                }}
+                className="serviceFeature"
+                data-active={!desktop || activeService === i}
+                tabIndex={desktop ? 0 : undefined}
+                aria-labelledby={`service-title-${i}`}
+                onMouseEnter={() => {
+                  if (desktop) setHoverService(i);
+                }}
+                onMouseLeave={() => setHoverService(null)}
+                onFocus={() => {
+                  if (desktop) setFocusService(i);
+                }}
+                onBlur={() => setFocusService(null)}
+              >
+                <span className="serviceFeatureIndex">0{i + 1}</span>
+                <div className="serviceFeatureBody">
+                  <div className="serviceFeatureTitle">
+                    <h3 id={`service-title-${i}`}>{service.title}</h3>
+                    <ArrowUpRight
+                      className="serviceFeatureArrow"
+                      size={28}
+                      strokeWidth={1.25}
+                      aria-hidden="true"
+                    />
+                  </div>
+                  <p>{service.text}</p>
+                  <p className="serviceFeatureCategories">
+                    {service.items.join(" / ")}
+                  </p>
+                </div>
               </div>
-              <p>{service.text}</p>
-              <p className="serviceFeatureCategories">{service.items.join(" / ")}</p>
-            </div>
-          </button>
-        ))}
+              <div
+                className={`servicePreview serviceInlinePreview ${i === 1 ? "serviceInlineSystem" : ""}`}
+                inert={desktop}
+              >
+                <div
+                  className={`servicePreviewFrame ${i === 0 ? "previewSite" : "previewSystem"}`}
+                >
+                  {i === 0 ? <SiteDemo /> : <ClientsDemo />}
+                </div>
+              </div>
+            </article>
+          ))}
         </div>
-        <div className="servicePreview" aria-hidden="true">
-          <div className="servicePreviewFrame previewSite">
-            <span className="previewSiteChrome" />
-            <span className="previewSiteEyebrow" />
-            <span className="previewSiteTitle" />
-            <span className="previewSiteTitle previewSiteTitleShort" />
-            <span className="previewSiteColumns">
-              <i />
-              <i />
-              <i />
-            </span>
-            <span className="previewSiteLine" />
+        <div
+          className="servicePreview servicePreviewShared"
+          inert={!desktop}
+          onFocusCapture={() => setFocusService(activeService)}
+          onBlurCapture={(event) => {
+            if (!event.currentTarget.contains(event.relatedTarget))
+              setFocusService(null);
+          }}
+        >
+          <div
+            className="servicePreviewFrame previewSite"
+            inert={!desktop || activeService !== 0}
+            aria-hidden={!desktop || activeService !== 0}
+          >
+            <SiteDemo />
           </div>
-          <div className="servicePreviewFrame previewSystem">
-            <span className="previewSystemHeading" />
-            <span className="previewSystemStat"><i /><i /></span>
-            <span className="previewSystemRows">
-              <i />
-              <i />
-              <i />
-              <i />
-            </span>
-            <span className="previewSystemChart"><i /><i /><i /><i /><i /></span>
+          <div
+            className="servicePreviewFrame previewSystem"
+            inert={!desktop || activeService !== 1}
+            aria-hidden={!desktop || activeService !== 1}
+          >
+            <ClientsDemo />
           </div>
         </div>
-      </div>
-    </section>
-  );
-}
-export function Projects() {
-  return (
-    <section id="projetos" className="shell section projects">
-      <div className="section-heading">
-        <span className="eyebrow">02 / NOSSO UNIVERSO</span>
-        <div>
-          <h2>
-            Projetos selecionados<span className="accent">.</span>
-          </h2>
-          <p>
-            Um espaço para as soluções que criamos.
-            <br />
-            Primeira seleção em preparação, com produtos da SWNexa.
-          </p>
-        </div>
-      </div>
-      <div className="project-grid">
-        {projects.map((project) => (
-          <article key={project.name}>
-            <Visual asset={images[project.image]} compact />
-            <div className="project-title">
-              <h3>
-                {project.href ? (
-                  <a href={project.href}>
-                    {project.name} <ArrowUpRight size={22} />
-                  </a>
-                ) : (
-                  project.name
-                )}
-              </h3>
-              <span>{project.year ?? "APRESENTAÇÃO EM BREVE"}</span>
-            </div>
-            <p className="project-category">{project.category}</p>
-            <p className="project-description">{project.description}</p>
-          </article>
-        ))}
       </div>
     </section>
   );

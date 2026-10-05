@@ -1,0 +1,12 @@
+<svg fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1100">
+<defs><pattern id="weave" width="8" height="8" patternUnits="userSpaceOnUse"><path d="M0 1h8M1 0v8" stroke="#f4dcc4" stroke-opacity=".09" stroke-width=".7"/></pattern><radialGradient id="glaze"><stop stop-color="#f3e7ce"/><stop offset=".8" stop-color="#e4d3b4"/><stop offset="1" stop-color="#d2bfa0"/></radialGradient></defs>
+<path fill="#bb7657" d="M0 0h900v1100H0z"/><path fill="url(#weave)" d="M0 0h900v1100H0z"/>
+<path d="m-80 165 379-207 110 1212H-80Z" fill="#ded1b0"/><path d="m25 111 57 989M90 78l58 1022M163 40l54 1060" stroke="#b8a984" stroke-width="3" opacity=".4"/>
+<ellipse cx="534" cy="600" rx="317" ry="343" fill="#6c3d2725"/><circle cx="478" cy="550" r="324" fill="url(#glaze)"/><circle cx="478" cy="550" r="271" fill="none" stroke="#bfab88" stroke-width="2"/><circle cx="478" cy="550" r="228" fill="#e9d9b9"/>
+<path d="M360 701c-171-11-216-158-154-251 145 0 220 122 154 251Z" fill="#66784f"/><path d="M478 475c-107-119-38-256 58-264 77 125 41 232-58 264Z" fill="#8b9761"/><path d="m228 475 115 188m161-217 33-200" stroke="#c6d1a4" stroke-width="5"/>
+<circle cx="527" cy="621" r="113" fill="#a94b36"/><circle cx="527" cy="621" r="87" fill="#d67c54"/><path d="M527 544v154m-68-115 136 76m-137 0 137-76" stroke="#eaa16e" stroke-width="12" stroke-linecap="round"/>
+<ellipse cx="367" cy="575" rx="89" ry="68" transform="rotate(-28 367 575)" fill="#bc553b"/><path d="m335 510 29 42 32-47" stroke="#75804c" stroke-width="9"/>
+<path d="M515 397c45-54 143-47 167 6 17 44-20 65-57 59l-87-1c-36 6-48-32-23-64Z" fill="#b47b45"/><path d="M535 410c38-32 96-25 111 3 11 18-16 23-33 19l-69-2c-17 0-20-7-9-20Z" fill="#e3b980"/>
+<path d="m585 713 51-23m-208 51 19 10m-91-284 21 9" stroke="#677847" stroke-width="7" stroke-linecap="round"/><circle cx="654" cy="553" r="7" fill="#ba9143"/><circle cx="397" cy="732" r="6" fill="#ba9143"/>
+<path d="m781 709-26 294" stroke="#cfc4a9" stroke-width="15" stroke-linecap="round"/><ellipse cx="789" cy="665" rx="30" ry="58" transform="rotate(6 789 665)" fill="#d6cbb3"/><path d="m792 880 72 220" stroke="#985c42" stroke-width="2"/>
+</svg>

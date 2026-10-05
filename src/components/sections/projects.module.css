@@ -1,0 +1,435 @@
+.collection {
+  padding-top: 14px;
+}
+.intro {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  border-top: 1px solid var(--line);
+  padding: 20px 0 32px;
+  font-size: 10px;
+  letter-spacing: 0.07em;
+  color: #62685b;
+}
+.intro > span:last-child {
+  letter-spacing: 0;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: clamp(24px, 4vw, 64px);
+  row-gap: 64px;
+}
+.project {
+  min-width: 0;
+}
+.cover {
+  position: relative;
+  aspect-ratio: 1.22;
+  overflow: hidden;
+  isolation: isolate;
+  background: var(--cover-background);
+  color: var(--cover-accent);
+}
+.projectLink {
+  display: block;
+}
+.projectLink:focus-visible {
+  outline-offset: 8px;
+}
+.coverTop {
+  position: absolute;
+  inset: 22px 24px auto;
+  display: flex;
+  justify-content: space-between;
+  font-size: 8px;
+  letter-spacing: 0.1em;
+  z-index: 2;
+}
+.coverBottom {
+  position: absolute;
+  bottom: 22px;
+  left: 24px;
+  font-size: 9px;
+  letter-spacing: 0.05em;
+  z-index: 2;
+}
+.atelier svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.9;
+  transition: transform 1.2s ease;
+}
+.projectLink:hover .atelier svg {
+  transform: scale(1.025);
+}
+.atelierWord {
+  position: absolute;
+  left: 24px;
+  bottom: 58px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(32px, 4.3vw, 74px);
+  letter-spacing: -0.06em;
+  color: #f3eee5;
+}
+.atelierWord small {
+  font:
+    10px Arial,
+    sans-serif;
+  vertical-align: top;
+  margin-left: 8px;
+  letter-spacing: 0.05em;
+}
+.amoraPlate {
+  position: absolute;
+  width: 72%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  right: -22%;
+  top: 16%;
+  background: #dcccb3;
+  border: 18px solid #e4d7c0;
+  box-shadow:
+    inset 0 0 0 1px #bdae93,
+    0 20px 50px #6d362116;
+}
+.amoraPlate::after {
+  content: "";
+  position: absolute;
+  inset: 14%;
+  border-radius: 50%;
+  border: 1px solid #bdae93;
+}
+.amoraLeaf {
+  position: absolute;
+  width: 22%;
+  height: 42%;
+  right: 17%;
+  top: 30%;
+  background: #758166;
+  border-radius: 100% 0 100% 0;
+  transform: rotate(30deg);
+}
+.amoraLeaf::after {
+  content: "";
+  position: absolute;
+  width: 1px;
+  height: 90%;
+  background: #eee3cf88;
+  left: 50%;
+  top: 5%;
+  transform: rotate(18deg);
+}
+.amoraWord {
+  position: absolute;
+  top: 28%;
+  left: 7%;
+  font-family: Georgia, serif;
+  font-style: italic;
+  font-size: clamp(48px, 7vw, 110px);
+  letter-spacing: -0.065em;
+}
+.amoraWord > span {
+  display: block;
+  font-size: 13px;
+  letter-spacing: 0.01em;
+  margin: 6px 0 0 8px;
+}
+.orbit {
+  background-image:
+    linear-gradient(#5b6cff12 1px, transparent 1px),
+    linear-gradient(90deg, #5b6cff12 1px, transparent 1px);
+  background-size: 36px 36px;
+}
+.orbitInterface {
+  position: absolute;
+  right: -8%;
+  bottom: 17%;
+  width: 61%;
+  padding: 18px;
+  background: #ffffffeb;
+  border: 1px solid #cdd5e6;
+  box-shadow: 0 16px 40px #31468012;
+  border-radius: 7px;
+  transform: rotate(-5deg);
+  color: #263044;
+}
+.orbitInterface > span {
+  display: flex;
+  justify-content: space-between;
+  font: 8px monospace;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #dce2ed;
+}
+.orbitInterface > span i {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #5b6cff;
+}
+.orbitInterface > div {
+  padding-top: 16px;
+}
+.orbitInterface > div > span:first-child {
+  font: 7px monospace;
+  color: #626f86;
+}
+.orbitInterface strong {
+  display: block;
+  font-size: 26px;
+  font-weight: 500;
+  margin-top: 8px;
+  letter-spacing: -0.04em;
+}
+.orbitInterface small {
+  font-size: 8px;
+  font-weight: 400;
+  letter-spacing: 0;
+  margin-left: 6px;
+}
+.orbitBars {
+  display: flex;
+  gap: 7px;
+  align-items: flex-end;
+  height: 42px;
+  border-bottom: 1px solid #dce2ed;
+  padding-bottom: 5px;
+  margin-top: 7px;
+}
+.orbitBars i {
+  width: 17px;
+  height: 10px;
+  background: #bac3fc;
+}
+.orbitBars i:nth-child(2) {
+  height: 16px;
+}
+.orbitBars i:nth-child(3) {
+  height: 21px;
+}
+.orbitBars i:nth-child(4) {
+  height: 25px;
+}
+.orbitBars i:nth-child(5) {
+  height: 29px;
+}
+.orbitBars i:nth-child(6) {
+  height: 36px;
+  background: #5b6cff;
+}
+.orbitSignal {
+  display: block;
+  font: 7px monospace;
+  color: #4b5be7;
+  margin-top: 14px;
+}
+.orbitWord {
+  position: absolute;
+  left: 7%;
+  top: 22%;
+  color: #222a35;
+  font-size: clamp(46px, 7vw, 110px);
+  font-weight: 500;
+  letter-spacing: -0.09em;
+  line-height: 1;
+}
+.orbitWord > span {
+  display: block;
+  font: 8px monospace;
+  letter-spacing: 0.1em;
+  margin-top: 20px;
+  color: #4b5be7;
+}
+.orbit .coverBottom {
+  font-family: monospace;
+  font-size: 8px;
+}
+.voltWord {
+  position: absolute;
+  left: -3%;
+  top: 13%;
+  font-size: clamp(70px, 12vw, 185px);
+  font-weight: 900;
+  line-height: 0.78;
+  letter-spacing: -0.09em;
+  transform: rotate(-9deg);
+}
+.voltWord > span {
+  color: transparent;
+  -webkit-text-stroke: 1px #242020;
+}
+.voltStamp {
+  position: absolute;
+  right: 8%;
+  bottom: 12%;
+  width: 22%;
+  aspect-ratio: 1;
+  display: grid;
+  place-content: center;
+  background: #f4ebd5;
+  border-radius: 50%;
+  transform: rotate(12deg);
+  font-size: clamp(13px, 2.2vw, 30px);
+  font-weight: 800;
+  line-height: 0.9;
+  letter-spacing: -0.06em;
+}
+.caption {
+  display: flex;
+  align-items: start;
+  gap: 16px;
+  margin-top: 22px;
+}
+.number {
+  padding-top: 6px;
+  font-size: 10px;
+  color: var(--muted);
+}
+.caption h3 {
+  font-size: 25px;
+  font-weight: 500;
+  letter-spacing: -0.035em;
+}
+.caption h3 a {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.caption p {
+  margin-top: 6px;
+  font-size: 11px;
+  color: #62685b;
+}
+.status {
+  margin-left: auto;
+  padding-top: 8px;
+  font-size: 8px;
+  letter-spacing: 0.05em;
+  color: #62685b;
+  text-align: right;
+}
+.description {
+  margin: 14px 0 0 29px;
+  max-width: 40ch;
+  font-size: 13px;
+  line-height: 1.6;
+  color: #62685b;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .amoraPlate,
+  .amoraLeaf,
+  .amoraWord {
+    transition: transform 850ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .projectLink:is(:hover, :focus-visible) .amoraPlate {
+    transform: translate(-8px, -4px) scale(1.025);
+  }
+  .projectLink:is(:hover, :focus-visible) .amoraLeaf {
+    transform: translate(-4px, -6px) rotate(22deg);
+  }
+  .projectLink:is(:hover, :focus-visible) .amoraWord {
+    transform: translateY(-3px);
+  }
+  .orbitInterface {
+    transition: transform 650ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .orbitBars i {
+    transform-origin: bottom;
+    transition: transform 500ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .orbitBars i:nth-child(2) {
+    transition-delay: 40ms;
+  }
+  .orbitBars i:nth-child(3) {
+    transition-delay: 80ms;
+  }
+  .orbitBars i:nth-child(4) {
+    transition-delay: 120ms;
+  }
+  .orbitBars i:nth-child(5) {
+    transition-delay: 160ms;
+  }
+  .orbitBars i:nth-child(6) {
+    transition-delay: 200ms;
+  }
+  .projectLink:is(:hover, :focus-visible) .orbitInterface {
+    transform: translate(-10px, -6px) rotate(-2deg);
+  }
+  .projectLink:is(:hover, :focus-visible) .orbitBars i {
+    transform: scaleY(1.14);
+  }
+  .voltWord,
+  .voltStamp {
+    transition: transform 450ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .projectLink:is(:hover, :focus-visible) .voltWord {
+    transform: translate(3px, -5px) rotate(-6deg);
+  }
+  .projectLink:is(:hover, :focus-visible) .voltStamp {
+    transform: rotate(-6deg) scale(1.06);
+  }
+}
+@media (max-width: 760px) {
+  .intro {
+    flex-direction: column;
+    gap: 8px;
+    padding-bottom: 24px;
+    font-size: 9px;
+  }
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .cover {
+    aspect-ratio: 1.13;
+  }
+  .coverTop {
+    inset: 18px 18px auto;
+    font-size: 7px;
+  }
+  .coverBottom {
+    left: 18px;
+    bottom: 18px;
+    font-size: 8px;
+  }
+  .atelierWord {
+    left: 18px;
+    font-size: clamp(40px, 11vw, 75px);
+  }
+  .amoraWord {
+    font-size: clamp(64px, 20vw, 120px);
+  }
+  .orbitWord {
+    font-size: clamp(64px, 20vw, 120px);
+  }
+  .voltWord {
+    font-size: clamp(100px, 34vw, 205px);
+  }
+  .voltStamp {
+    font-size: clamp(18px, 5vw, 30px);
+  }
+  .caption {
+    gap: 12px;
+  }
+  .caption h3 {
+    font-size: 23px;
+  }
+  .status {
+    max-width: 84px;
+    line-height: 1.5;
+    font-size: 7px;
+  }
+  .description {
+    margin-left: 25px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .atelier svg {
+    transition: none;
+  }
+  .projectLink:hover .atelier svg {
+    transform: none;
+  }
+}

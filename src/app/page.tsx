@@ -1,7 +1,8 @@
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { Hero } from "@/components/sections/hero";
-import { Services, Projects } from "@/components/sections/work";
+import { Services } from "@/components/sections/work";
+import { Projects } from "@/components/sections/projects";
 import { Beyond, Process, Budget, FAQ } from "@/components/sections/approach";
 import { Contact } from "@/components/sections/contact";
 import { Reveal } from "@/components/ui/reveal";
