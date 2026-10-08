@@ -1,12 +1,24 @@
-.collection {
-  padding-top: 14px;
+.collection:global(.section) {
+  padding-block: clamp(88px, 7vw, 112px);
+  background: #eeefec;
+}
+.collection :global(.section-heading) {
+  margin-bottom: 64px;
+}
+.collection :global(.section-heading) h2 {
+  max-width: 23ch;
+  font-size: clamp(44px, 4.2vw, 64px);
+  line-height: 1.08;
+}
+.collection :global(.section-heading) p {
+  max-width: 38ch;
 }
 .intro {
   display: flex;
   justify-content: space-between;
   gap: 20px;
   border-top: 1px solid var(--line);
-  padding: 20px 0 32px;
+  padding: 22px 0 48px;
   font-size: 10px;
   letter-spacing: 0.07em;
   color: #62685b;
@@ -372,10 +384,19 @@
   }
 }
 @media (max-width: 760px) {
+  .collection:global(.section) {
+    padding-block: 64px 72px;
+  }
+  .collection :global(.section-heading) {
+    margin-bottom: 44px;
+  }
+  .collection :global(.section-heading) h2 {
+    font-size: clamp(36px, 9.4vw, 46px);
+  }
   .intro {
     flex-direction: column;
     gap: 8px;
-    padding-bottom: 24px;
+    padding-bottom: 32px;
     font-size: 9px;
   }
   .grid {

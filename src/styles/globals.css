@@ -360,6 +360,16 @@ svg {
   margin-top: 40px;
   scroll-margin-top: -60px;
 }
+.section.servicesSection {
+  padding-bottom: clamp(56px, 5vw, 80px);
+}
+.servicesSection::after {
+  content: "";
+  display: block;
+  height: 1px;
+  margin-top: clamp(56px, 5vw, 80px);
+  background: var(--line);
+}
 .section-heading {
   display: grid;
   grid-template-columns: 1fr 2fr;
@@ -380,8 +390,8 @@ h2 {
   color: #6c7165;
   font-size: 14px;
 }
-.servicesHeading {
-  margin-bottom: clamp(56px, 8vw, 112px);
+.servicesSection .servicesHeading {
+  margin-bottom: clamp(80px, 9vw, 136px);
 }
 .servicesHeading h2 {
   max-width: 24ch;
@@ -468,6 +478,7 @@ h2 {
 }
 .serviceFeature[data-active="true"] .serviceFeatureIndex {
   color: #789d37;
+  font-weight: 600;
 }
 .serviceFeature[data-active="true"] h3 {
   color: var(--ink);
@@ -478,6 +489,7 @@ h2 {
 }
 .serviceFeature[data-active="true"]:after {
   right: 82%;
+  height: 2px;
 }
 .serviceFeature:focus-visible {
   outline: 1px solid var(--green);
@@ -601,9 +613,11 @@ h2 {
   .servicesSection {
     margin-top: 40px;
   }
-  .servicesHeading {
-    margin-bottom: 48px;
+  .servicesSection .servicesHeading {
+    margin-bottom: 60px;
   }
+  .section.servicesSection { padding-bottom: 40px; }
+  .servicesSection::after { margin-top: 36px; }
   .servicesHeading h2 {
     font-size: clamp(42px, 11vw, 54px);
     line-height: 1.02;
@@ -989,6 +1003,19 @@ textarea {
   min-height: 40px;
   margin-top: 18px;
 }
+.contact-fields { border: 0; padding: 0; margin: 0; min-width: 0; }
+.contact-fields legend { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.contact .contact-field-error { display: block; margin-top: 8px; font-size: 11px; color: var(--ink); }
+.contact [aria-invalid="true"] { border-bottom-style: dashed; border-bottom-color: var(--ink); }
+.contact button:disabled { opacity: .5; cursor: not-allowed; transform: none; }
+.contact-whatsapp { margin-top: 38px; font-size: 12px; }
+.contact-whatsapp > span { display: block; color: #6c7165; margin-bottom: 12px; }
+.contact-whatsapp a { display: inline-flex; align-items: center; gap: 10px; border-bottom: 1px solid var(--ink); padding-bottom: 6px; }
+.contact-confirmation { align-self: start; border-top: 1px solid var(--line); padding-top: 30px; }
+.contact-confirmation h3 { font-size: clamp(30px, 3.4vw, 48px); line-height: 1.1; letter-spacing: -.045em; margin: 26px 0 0; }
+.contact .contact-confirmation p { max-width: 38ch; }
+.contact-confirmation .button { margin-top: 20px; max-width: 100%; gap: 12px; padding-inline: 18px; }
+.contact-reset { display: block; margin-top: 26px; padding: 0 0 5px; border: 0; border-bottom: 1px solid var(--line); background: transparent; font-size: 12px; cursor: pointer; }
 .footer {
   padding-top: 40px;
   padding-bottom: 25px;
