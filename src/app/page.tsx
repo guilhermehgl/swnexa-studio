@@ -6,11 +6,12 @@ import { Projects } from "@/components/sections/projects";
 import { Beyond, Process, Budget, FAQ } from "@/components/sections/approach";
 import { Contact } from "@/components/sections/contact";
 import { Reveal } from "@/components/ui/reveal";
+import styles from "./homepage.module.css";
 export default function Home() {
   return (
     <>
       <Header />
-      <main id="conteudo">
+      <main id="conteudo" className={styles.homepage}>
         <Hero />
         <Reveal>
           <Services />

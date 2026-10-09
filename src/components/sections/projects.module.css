@@ -11,7 +11,10 @@
   line-height: 1.08;
 }
 .collection :global(.section-heading) p {
-  max-width: 38ch;
+  max-width: 42ch;
+  font-size: 18px;
+  line-height: 1.6;
+  color: #5e6457;
 }
 .intro {
   display: flex;
@@ -19,7 +22,7 @@
   gap: 20px;
   border-top: 1px solid var(--line);
   padding: 22px 0 48px;
-  font-size: 10px;
+  font-size: 12px;
   letter-spacing: 0.07em;
   color: #62685b;
 }
@@ -294,13 +297,8 @@
   gap: 16px;
   margin-top: 22px;
 }
-.number {
-  padding-top: 6px;
-  font-size: 10px;
-  color: var(--muted);
-}
 .caption h3 {
-  font-size: 25px;
+  font-size: 24px;
   font-weight: 500;
   letter-spacing: -0.035em;
 }
@@ -311,22 +309,7 @@
 }
 .caption p {
   margin-top: 6px;
-  font-size: 11px;
-  color: #62685b;
-}
-.status {
-  margin-left: auto;
-  padding-top: 8px;
-  font-size: 8px;
-  letter-spacing: 0.05em;
-  color: #62685b;
-  text-align: right;
-}
-.description {
-  margin: 14px 0 0 29px;
-  max-width: 40ch;
-  font-size: 13px;
-  line-height: 1.6;
+  font-size: 15px;
   color: #62685b;
 }
 @media (prefers-reduced-motion: no-preference) {
@@ -397,7 +380,10 @@
     flex-direction: column;
     gap: 8px;
     padding-bottom: 32px;
-    font-size: 9px;
+    font-size: 11px;
+  }
+  .collection :global(.section-heading) p {
+    font-size: 17px;
   }
   .grid {
     grid-template-columns: 1fr;
@@ -436,14 +422,6 @@
   }
   .caption h3 {
     font-size: 23px;
-  }
-  .status {
-    max-width: 84px;
-    line-height: 1.5;
-    font-size: 7px;
-  }
-  .description {
-    margin-left: 25px;
   }
 }
 @media (prefers-reduced-motion: reduce) {

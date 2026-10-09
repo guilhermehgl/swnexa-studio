@@ -1,0 +1,126 @@
+/* These refinements belong only to the Studio homepage. */
+.homepage :global(.serviceFeatureBody) > p {
+  font-size: 18px;
+  line-height: 1.6;
+  color: #565c50;
+}
+.homepage :global(.serviceFeatureBody) > :global(.serviceFeatureCategories) {
+  font-size: 14px !important;
+  line-height: 1.7 !important;
+  letter-spacing: 0;
+  color: #62685b !important;
+  margin-top: 18px;
+}
+.homepage :global(.beyond) p {
+  font-size: 18px;
+  color: #cbd2c4;
+}
+.homepage :global(.beyond .text-link) {
+  font-size: 15px;
+}
+.homepage :global(.process-grid) {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 44px clamp(32px, 5vw, 80px);
+}
+.homepage :global(.process-grid) article {
+  padding-top: 24px;
+}
+.homepage :global(.process-grid) h3 {
+  font-size: clamp(24px, 2.3vw, 32px);
+  line-height: 1.2;
+  margin-top: 20px;
+}
+.homepage :global(.process-grid) p {
+  font-size: 17px;
+  color: #5e6457;
+  max-width: 39ch;
+  margin-top: 14px;
+}
+.homepage :global(.difference) > div {
+  font-size: 15px;
+  line-height: 1.5;
+}
+.homepage :global(.budget) p {
+  font-size: 16px;
+}
+.homepage :global(.faq) summary {
+  font-size: 18px;
+  line-height: 1.5;
+  padding-block: 26px;
+}
+.homepage :global(.faq) details p {
+  font-size: 16px;
+  line-height: 1.7;
+  color: #5e6457;
+}
+.homepage :global(.contact) p {
+  font-size: 17px;
+  color: #5e6457;
+}
+.homepage :global(.contact) label {
+  font-size: 14px;
+  line-height: 1.5;
+}
+.homepage :global(.contact) :is(input, select, textarea) {
+  font-size: 16px;
+  line-height: 1.5;
+}
+.homepage :global(.contact) :is(input, textarea)::placeholder {
+  color: #686e60;
+}
+.homepage :global(.contact .contact-field-error),
+.homepage :global(.contact .form-status) {
+  font-size: 14px;
+  line-height: 1.6;
+}
+.homepage :global(.contact-whatsapp),
+.homepage :global(.contact-reset),
+.homepage :global(.contact .button) {
+  font-size: 14px;
+}
+.homepage :global(.form-submit) > span {
+  font-size: 12px;
+}
+@media (max-width: 760px) {
+  .homepage :global(.serviceFeatureBody) > p {
+    font-size: 17px;
+  }
+  .homepage :global(.beyond) p {
+    font-size: 17px;
+  }
+  .homepage :global(.process-grid) {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 28px;
+  }
+  .homepage :global(.process-grid) article {
+    padding-top: 20px;
+  }
+  .homepage :global(.process-grid) h3 {
+    font-size: 24px;
+    margin-top: 14px;
+  }
+  .homepage :global(.process-grid) p {
+    font-size: 16px;
+    margin-top: 10px;
+  }
+  .homepage :global(.difference) > div {
+    font-size: 14px;
+  }
+  .homepage :global(.budget) p {
+    font-size: 15px;
+  }
+  .homepage :global(.faq) summary {
+    font-size: 17px;
+    padding-block: 22px;
+  }
+  .homepage :global(.contact) p {
+    font-size: 16px;
+  }
+  .homepage :global(.form-grid) {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+  }
+  .homepage :global(.form-submit) {
+    flex-wrap: wrap;
+  }
+}

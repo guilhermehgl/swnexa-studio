@@ -5,6 +5,13 @@ import { conceptProjects } from "@/data/projects";
 import { ArchitecturalStudy } from "@/components/concepts/atelier/architectural-study";
 import styles from "./projects.module.css";
 
+const categories = {
+  atelier: "Architecture & Interior",
+  amora: "Food & Hospitality",
+  orbit: "Technology & Product",
+  volt: "Culture & Entertainment",
+};
+
 export function Projects() {
   return (
     <section
@@ -20,13 +27,11 @@ export function Projects() {
               Exemplos conceituais<span className="accent">.</span>
             </h2>
             <p>
-              Possibilidades para inspirar.
-              <br />A direção do seu site é definida com você.
+              Quatro mercados. Quatro linguagens. Uma mesma capacidade de criar.
             </p>
           </div>
         </div>
         <div className={styles.intro}>
-          <span>EXPERIMENTOS EM DESIGN & TECNOLOGIA</span>
           <span>Conceitos autorais · sem clientes reais</span>
         </div>
         <div className={styles.grid}>
@@ -142,7 +147,6 @@ export function Projects() {
                   cover
                 )}
                 <div className={styles.caption}>
-                  <span className={styles.number}>{project.number}</span>
                   <div>
                     <h3>
                       {project.status === "available" ? (
@@ -154,15 +158,9 @@ export function Projects() {
                         project.name
                       )}
                     </h3>
-                    <p>{project.category}</p>
+                    <p>{categories[project.slug]}</p>
                   </div>
-                  <span className={styles.status}>
-                    {project.status === "available"
-                      ? "EXPERIÊNCIA DISPONÍVEL"
-                      : "EM BREVE"}
-                  </span>
                 </div>
-                <p className={styles.description}>{project.description}</p>
               </article>
             );
           })}

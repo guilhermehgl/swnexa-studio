@@ -39,12 +39,19 @@ export const services = [
   },
 ];
 export const steps = [
-  ["Conversamos", "O primeiro passo é ouvir sua ideia."],
-  ["Entendemos", "Mergulhamos no contexto e nos objetivos."],
-  ["Planejamos", "Definimos escopo, direção e prioridades."],
-  ["Desenvolvemos", "Design e código ganham forma juntos."],
-  ["Refinamos", "Testamos, ajustamos e cuidamos dos detalhes."],
-  ["Publicamos", "Preparamos tudo para entrar no ar."],
+  [
+    "Conversamos",
+    "Entendemos sua ideia, seus objetivos e o contexto do negócio.",
+  ],
+  [
+    "Planejamos",
+    "Definimos a estrutura, a experiência e o caminho do projeto.",
+  ],
+  ["Desenvolvemos", "Transformamos o planejamento em design e tecnologia."],
+  [
+    "Refinamos & publicamos",
+    "Ajustamos os detalhes, validamos e colocamos o projeto no ar.",
+  ],
 ];
 export const faqs = [
   [
