@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import Link from "next/link";
 import { ConceptReturn } from "@/components/concepts/concept-return";
 import { VoltHeader } from "@/components/concepts/volt/volt-header";
@@ -15,11 +16,11 @@ import { VoltTickets } from "@/components/concepts/volt/volt-tickets";
 import { voltExperiences } from "@/data/volt";
 import styles from "@/components/concepts/volt/volt.module.css";
 
-export const metadata: Metadata = {
-  title: "VOLT | Música, arte e movimento — experiência conceitual",
-  description:
-    "Um festival imaginado em três noites. Direção de arte, cultura e movimento em uma experiência conceitual da SWNexa Studio.",
-};
+export const metadata: Metadata = pageMetadata(
+  "VOLT | Música, arte e movimento — experiência conceitual",
+  "Um festival imaginado em três noites. Direção de arte, cultura e movimento em uma experiência conceitual da SWNexa Studio.",
+  "/projetos/volt",
+);
 
 function VoltHero() {
   return (
@@ -29,6 +30,10 @@ function VoltHero() {
         <span>FESTIVAL DE MÚSICA & CULTURA</span>
         <span>18—20 SET / SÃO PAULO / 2027</span>
       </div>
+      <p className={styles.conceptNote}>
+        Experiência conceitual. Evento, programação e ingressos fictícios; sem
+        oferta comercial.
+      </p>
       <div className={styles.heroPoster}>
         <h1 id="volt-title">VOLT</h1>
         <VoltGraphic kind="star" className={styles.heroStar} />

@@ -1,57 +1,85 @@
 # SWNexa Studio
 
-Site institucional em Next.js App Router, React e TypeScript. Contato por Resend e WhatsApp, sem banco de dados ou autenticação.
+Iniciativa independente de desenvolvimento de sites, sistemas e experiências digitais, conduzida paralelamente à minha trajetória profissional em tecnologia.
 
-## Executar
+Este repositório apresenta o site institucional da SWNexa Studio e quatro experiências autorais. O projeto aplica conhecimentos de frontend, arquitetura de componentes, responsividade, acessibilidade e integração de serviços, complementando minha experiência como desenvolvedor.
 
-Node.js 20.9 ou superior (recomendado Node.js 24 LTS).
+**[Visitar o site oficial](https://studio.swnexa.com/)**
+
+![Homepage do SWNexa Studio, com sua identidade comercial preservada](docs/homepage.webp)
+
+## Objetivo e tecnologias
+
+Apresentar serviços de desenvolvimento digital a potenciais clientes e explorar diferentes linguagens de interface.
+
+Next.js App Router, React, TypeScript, Tailwind CSS 4, CSS Modules, Framer Motion, Lucide e Resend. WhatsApp oferece uma alternativa direta de contato. Não há banco de dados ou autenticação.
+
+## Experiências conceituais
+
+| Experiência                                           | Proposta                                                                    |
+| ----------------------------------------------------- | --------------------------------------------------------------------------- |
+| [Atelier](https://studio.swnexa.com/projetos/atelier) | Editorial de arquitetura e direção de arte.                                 |
+| [Amora](https://studio.swnexa.com/projetos/amora)     | Gastronomia e hospitalidade, com ilustrações e composição interativa.       |
+| [Orbit](https://studio.swnexa.com/projetos/orbit)     | Interface de tecnologia e produto, com indicadores e simulação local.       |
+| [Volt](https://studio.swnexa.com/projetos/volt)       | Música, cultura e entretenimento, com programação e acessos demonstrativos. |
+
+São experiências autorais, **não projetos entregues a clientes reais**. Marcas, indicadores, reservas, artistas e ingressos são fictícios; as interações não realizam reservas, contratações ou pagamentos.
+
+## Arquitetura e frontend
+
+- src/app: páginas, API de contato e metadados nativos do Next.js.
+- src/components: layout, seções, elementos de interface e componentes específicos de cada conceito.
+- src/data: conteúdo e dados demonstrativos tipados.
+- src/lib/contact.ts: contrato e validação compartilhada do contato.
+- src/styles e CSS Modules: identidade global, estilos locais e responsividade.
+- tests: testes de contato e integridade da navegação pública.
+
+As páginas combinam componentes de servidor com componentes de cliente nos pontos de interação. Imagens usam recursos do Next.js e as fontes são servidas pelo projeto via next/font. Animações respeitam movimento reduzido; controles incluem identificação de campos, feedback acessível e navegação por teclado.
+
+## Contato comercial
+
+O formulário envia JSON para POST /api/contact. A API valida os campos, limita o corpo e envia texto simples pelo Resend, com o e-mail do visitante em Reply-To. A interface informa carregamento, sucesso e erro, preserva dados em falhas e bloqueia cliques simultâneos. A idempotência mantém tentativas repetidas do mesmo envio consistentes.
+
+Um honeypot complementa essas verificações; não é proteção completa contra spam nem limitação de frequência. Proteções adicionais da hospedagem podem ser avaliadas separadamente, sem serviços novos neste projeto.
+
+## Testes e qualidade
+
+Node.js 24 e npm:
 
 ```sh
+npm ci
+npm run lint
+npm run typecheck
+npm test
+npm run build
+```
+
+O GitHub Actions executa essas verificações em PRs para master e pushes na master e em branches portfolio/**. Os testes usam o runner nativo do Node.js e Resend simulado, sem credenciais reais ou e-mails enviados. Cobrem validação, tamanho, origem, idempotência, honeypot, erros do fornecedor e integridade das experiências públicas. Não substituem um teste autorizado de entrega real.
+
+## Execução local
+
+```sh
+git clone https://github.com/guilhermehgl/swnexa-studio.git
+cd swnexa-studio
 npm ci
 npm run dev
 ```
 
-Acesse http://localhost:3000. Produção: `npm run build` e `npm start`.
+Abra http://localhost:3000. Copie .env.example para .env.local se precisar configurar o contato, preservando arquivos existentes. Para servir o build: npm run build e npm start.
 
-## Verificações
+## Publicação e configuração
 
-```sh
-npm run lint
-npm run typecheck
-npm run build
-```
+A Vercel publica a master em [studio.swnexa.com](https://studio.swnexa.com/). Branches podem gerar previews automáticos; o CI verifica qualidade, sem executar deploy manual. Canonicals, sitemap, robots e imagem de compartilhamento usam recursos nativos do Next.js.
 
-## Organização
+| Variável                    | Finalidade                                      |
+| --------------------------- | ----------------------------------------------- |
+| RESEND_API_KEY              | Chave privada, somente no servidor.             |
+| CONTACT_TO_EMAIL            | Destinatário comercial.                         |
+| CONTACT_FROM_EMAIL          | Remetente de domínio verificado no Resend.      |
+| NEXT_PUBLIC_WHATSAPP_NUMBER | Número público com país e DDD, somente dígitos. |
 
-- `src/app`: página, layout, metadados e ícone inicial.
-- `src/components/layout`: navegação responsiva e rodapé.
-- `src/components/sections`: blocos editoriais da homepage.
-- `src/components/ui`: mídia substituível e animação de entrada.
-- `src/data/content.ts`: projetos provisórios, perguntas, serviços e referências de imagens.
-- `src/styles/globals.css`: identidade visual e adaptações responsivas com Tailwind CSS 4.
-- `public/images`: backgrounds, projetos e mockups locais.
+Não versione segredos ou .env.local. Sem as três variáveis privadas, a API retorna indisponibilidade e não simula sucesso. O WhatsApp é incorporado no build. A entrega de e-mail depende da configuração do Resend e deve ser testada somente com autorização.
 
-## Evolução do conteúdo
+## Autor
 
-Em `images` de `src/data/content.ts`, substitua `src: null` por `/images/projects/arquivo.webp`, por exemplo, e revise o texto alternativo. O componente Visual passa automaticamente do estudo CSS para `next/image`. O hero aceita imagem local independente. Use arquivos otimizados e dimensionados para o espaço. Não foram baixadas imagens ou fontes externas.
-
-Fluxio e Produtiv são referências internas provisórias, não cases publicados. Revise as descrições, acrescente imagens reais e, se aplicável, `year` e `href`. Os estudos visuais não representam telas reais dos produtos. A seção visual não tem reprodução de vídeo nesta versão.
-
-O formulário envia para `POST /api/contact`, com validação no navegador e no servidor. O lead é enviado por Resend em texto simples, com o e-mail do visitante como Reply-To. Não há banco de dados. Falhas preservam os campos e permitem nova tentativa; a chave de idempotência evita duplicar o mesmo envio em uma tentativa repetida.
-
-### Configurar contato
-
-Copie `.env.example` para `.env.local` (ou preencha o arquivo local existente):
-
-- `RESEND_API_KEY`: chave privada do Resend, apenas no servidor.
-- `CONTACT_TO_EMAIL`: destinatário da SWNexa.
-- `CONTACT_FROM_EMAIL`: remetente de um domínio verificado no Resend, por exemplo `SWNexa Studio <contato@seu-dominio.com>`.
-- `NEXT_PUBLIC_WHATSAPP_NUMBER`: número com código do país e DDD, somente dígitos. Configurado como `5531982825341`.
-
-Reinicie o servidor depois de configurar. Em produção, configure as mesmas variáveis no ambiente antes do build: o número público é incorporado durante a compilação. Nunca publique `.env.local` ou a chave do Resend. Sem as três variáveis privadas, a rota retorna erro de indisponibilidade, sem simular sucesso.
-
-Testes de validação e do contrato da rota (Resend simulado, nenhum e-mail enviado): `node --test tests/contact.test.mjs`.
-
-Metadados básicos estão em `src/app/layout.tsx`. Quando houver domínio definitivo, configurar `metadataBase`, canonical, imagem Open Graph e sitemap. O favicon é uma marca provisória em `src/app/icon.svg`.
-
-Animações discretas usam Framer Motion, respeitando movimento reduzido. Conteúdo principal permanece em componentes de servidor; apenas navegação, formulário e Reveal são componentes de cliente.
+[Guilherme Henrique Guimarães Lima](https://github.com/guilhermehgl)

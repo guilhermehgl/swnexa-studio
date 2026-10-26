@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import Link from "next/link";
 import { amoraCopy as copy, amoraMenu, amoraNavigation } from "@/data/amora";
 import { AmoraImage } from "@/components/concepts/amora/amora-image";
@@ -11,18 +12,11 @@ import styles from "@/components/concepts/amora/amora.module.css";
 const title = "AMORA | Experiência 02 — SWNexa Studio";
 const description =
   "Uma experiência conceitual de gastronomia e hospitalidade criada pela SWNexa Studio. Uma exploração de identidade, direção de arte e interface; não representa um restaurante ou cliente real.";
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata(
   title,
   description,
-  openGraph: {
-    title,
-    description,
-    siteName: "AMORA — Uma experiência SWNexa Studio",
-    type: "website",
-    locale: "pt_BR",
-  },
-  twitter: { card: "summary", title, description },
-};
+  "/projetos/amora",
+);
 
 function Flower({ className }: { className?: string }) {
   return (
