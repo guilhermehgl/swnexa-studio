@@ -1153,3 +1153,23 @@
     transform: none;
   }
 }
+
+/* Readable explanatory copy on small screens; display typography stays intact. */
+@media (max-width: 760px) {
+  .heroCopy > p,
+  .storyCopy > p,
+  .ritualIntro > p,
+  .ritualDescription p,
+  .menuIntro > p,
+  .momentsHeading > p,
+  .placeCopy > p,
+  .final > p {
+    font-size: 14px;
+    line-height: 1.7;
+  }
+  .reservationNote,
+  .footer p {
+    font-size: 11px;
+    line-height: 1.6;
+  }
+}

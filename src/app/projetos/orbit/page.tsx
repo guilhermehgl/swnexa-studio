@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import Link from "next/link";
 import {
   ArrowUpRight,
@@ -18,19 +19,11 @@ import { OrbitReveal } from "@/components/concepts/orbit/orbit-motion";
 import { orbitCapabilities, orbitFlow, orbitNavigation } from "@/data/orbit";
 import styles from "@/components/concepts/orbit/orbit.module.css";
 
-export const metadata: Metadata = {
-  title: "ORBIT | Experiência conceitual da SWNexa Studio",
-  description:
-    "Experiência conceitual de uma plataforma corporativa que integra dados, processos e automações. Uma demonstração de produto digital criada pela SWNexa Studio.",
-  openGraph: {
-    title: "ORBIT | Experiência conceitual da SWNexa Studio",
-    description:
-      "Experiência conceitual de uma plataforma corporativa que integra dados, processos e automações. Uma demonstração de produto digital criada pela SWNexa Studio.",
-    type: "website",
-    locale: "pt_BR",
-    siteName: "ORBIT — Experiência conceitual da SWNexa Studio",
-  },
-};
+export const metadata: Metadata = pageMetadata(
+  "ORBIT | Experiência conceitual da SWNexa Studio",
+  "Experiência conceitual de uma plataforma corporativa que integra dados, processos e automações. Uma demonstração de produto digital criada pela SWNexa Studio.",
+  "/projetos/orbit",
+);
 const flowIcons = [Database, Workflow, Sparkles, GitBranch, Bell];
 
 export default function OrbitPage() {

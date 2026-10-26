@@ -53,6 +53,19 @@ export async function POST(request: Request) {
       { status: 400 },
     );
   }
+  // A filled trap is rejected before any provider call; this is not rate limiting.
+  if (
+    input &&
+    typeof input === "object" &&
+    "website" in input &&
+    (input as { website?: unknown }).website !== "" &&
+    (input as { website?: unknown }).website !== undefined
+  ) {
+    return Response.json(
+      { message: "Não foi possível processar a solicitação." },
+      { status: 422 },
+    );
+  }
   const { values, errors } = validateContact(input);
   if (Object.keys(errors).length)
     return Response.json(

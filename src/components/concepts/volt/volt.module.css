@@ -1397,3 +1397,11 @@
     transform: none;
   }
 }
+
+.conceptNote {
+  margin: 0 0 14px;
+  max-width: 68ch;
+  font-size: 12px;
+  line-height: 1.5;
+  color: #c9c7bc;
+}

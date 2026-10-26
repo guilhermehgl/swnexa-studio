@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import Link from "next/link";
 import { ArchitecturalStudy } from "@/components/concepts/atelier/architectural-study";
 import { AtelierReveal } from "@/components/concepts/atelier/atelier-motion";
@@ -8,17 +9,11 @@ import styles from "@/components/concepts/atelier/atelier.module.css";
 const title = "ATELIER 01 | Experiência editorial da SWNexa Studio";
 const description =
   "Experiência 01 — Editorial Arquitetônico. Uma exploração conceitual da SWNexa Studio sobre direção de arte, tipografia e identidade digital. Marcas, projetos e conteúdos fictícios.";
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata(
   title,
   description,
-  openGraph: {
-    title,
-    description,
-    type: "website",
-    siteName: "ATELIER 01 — Uma experiência SWNexa Studio",
-  },
-  twitter: { card: "summary", title, description },
-};
+  "/projetos/atelier",
+);
 
 const spaces = [
   {

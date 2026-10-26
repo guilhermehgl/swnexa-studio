@@ -39,6 +39,7 @@ export function Contact() {
   >("idle");
   const [notice, setNotice] = useState("");
   const busy = useRef(false);
+  const honeypot = useRef<HTMLInputElement>(null);
   const submissionKey = useRef<string | null>(null);
   const confirmation = useRef<HTMLDivElement>(null);
   const errors = { ...validateContact(values).errors, ...serverErrors };
@@ -124,7 +125,10 @@ export function Contact() {
           "Content-Type": "application/json",
           "Idempotency-Key": submissionKey.current,
         },
-        body: JSON.stringify(values),
+        body: JSON.stringify({
+          ...values,
+          website: honeypot.current?.value ?? "",
+        }),
         signal: AbortSignal.timeout(20000),
       });
       const result = await response.json();
@@ -234,6 +238,17 @@ export function Contact() {
         </div>
       ) : (
         <form noValidate onSubmit={submit} aria-busy={status === "sending"}>
+          <div hidden aria-hidden="true">
+            <label htmlFor="contact-website">Website</label>
+            <input
+              ref={honeypot}
+              id="contact-website"
+              name="website"
+              type="text"
+              tabIndex={-1}
+              autoComplete="off"
+            />
+          </div>
           <fieldset className="contact-fields" disabled={status === "sending"}>
             <legend className="sr-only">Sua solicitação de projeto</legend>
             <div className="form-grid">

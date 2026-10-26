@@ -201,3 +201,13 @@ test("provider rejection, exception and missing acceptance ID return error", asy
     assert.equal((await response.text()).includes("private"), false);
   }
 });
+
+test("honeypot rejects filled and malformed traps without contacting Resend", async () => {
+  const api = route();
+  for (const website of ["https://spam.example", " ", 123, null, {}, []]) {
+    assert.equal((await api.POST(request({ ...lead, website }))).status, 422);
+  }
+  assert.equal(api.calls.length, 0);
+  assert.equal((await api.POST(request({ ...lead, website: "" }))).status, 200);
+  assert.equal(api.calls.length, 1);
+});
